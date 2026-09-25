@@ -1,0 +1,128 @@
+/* =================================
+   Global Reset
+   ================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.5;
+}
+
+/* =================================
+   Typography
+   ================================= */
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  margin-top: 0;
+}
+
+small {
+  font-size: var(--font-size-sm);
+}
+
+.text-muted {
+  color: var(--color-text-muted) !important;
+}
+
+/* =================================
+   Links
+   ================================= */
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =================================
+   Images
+   ================================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =================================
+   Utility Classes
+   ================================= */
+
+.bg-page {
+  background-color: var(--color-bg);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.text-primary-custom {
+  color: var(--color-primary) !important;
+}
+
+.text-success-custom {
+  color: var(--color-success) !important;
+}
+
+.text-warning-custom {
+  color: var(--color-warning) !important;
+}
+
+.text-danger-custom {
+  color: var(--color-danger) !important;
+}
+
+.text-accent-custom {
+  color: var(--color-accent) !important;
+}
+
+/* =================================
+   Focus
+   ================================= */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
