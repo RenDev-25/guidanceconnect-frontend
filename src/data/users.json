@@ -1,0 +1,26 @@
+[
+  {
+    "id": "USR-0001",
+    "name": "Renzy",
+    "email": "renzy@g.batstate-u.edu.ph",
+    "role": "student",
+    "studentId": "STU-08125",
+    "status": "Active"
+  },
+  {
+    "id": "USR-0002",
+    "name": "Maria Santos",
+    "email": "maria@g.batstate-u.edu.ph",
+    "role": "facilitator",
+    "facilitatorId": "FAC-001",
+    "status": "Active"
+  },
+  {
+    "id": "USR-0003",
+    "name": "Dr. Reyes",
+    "email": "reyes@g.batstate-u.edu.ph",
+    "role": "admin",
+    "counselorId": "CNS-001",
+    "status": "Active"
+  }
+]

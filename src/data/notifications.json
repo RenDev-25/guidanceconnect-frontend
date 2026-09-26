@@ -1,0 +1,9 @@
+{
+  "id": "NOT-0001",
+  "userId": "USR-0001",
+  "title": "Appointment Confirmed",
+  "message": "Your counseling appointment has been confirmed.",
+  "type": "Appointment",
+  "isRead": false,
+  "createdAt": "2026-09-15T09:30:00"
+}

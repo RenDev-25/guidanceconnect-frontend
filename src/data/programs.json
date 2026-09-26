@@ -1,0 +1,10 @@
+{
+  "id": "PRG-0001",
+  "name": "Career Orientation Program",
+  "category": "Career Development",
+  "description": "Career preparation and orientation program for students.",
+  "startDate": "2026-10-05",
+  "endDate": "2026-10-05",
+  "status": "Scheduled",
+  "targetAudience": "Third-Year Students"
+}

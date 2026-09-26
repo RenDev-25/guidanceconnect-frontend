@@ -1,0 +1,30 @@
+[
+  {
+    "id": "SRV-001",
+    "name": "Individual Counseling",
+    "category": "Counseling",
+    "mode": "Hybrid",
+    "status": "Active"
+  },
+  {
+    "id": "SRV-002",
+    "name": "Good Moral Certificate",
+    "category": "Document",
+    "mode": "Online",
+    "status": "Active"
+  },
+  {
+    "id": "SRV-003",
+    "name": "Career Guidance",
+    "category": "Counseling",
+    "mode": "Face-to-Face",
+    "status": "Active"
+  },
+  {
+    "id": "SRV-004",
+    "name": "Clearance Signing",
+    "category": "Document",
+    "mode": "Online",
+    "status": "Active"
+  }
+]

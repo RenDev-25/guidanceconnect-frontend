@@ -1,0 +1,11 @@
+{
+  "id": "CR-0001",
+  "studentId": "STU-0001",
+  "appointmentId": "APT-0001",
+  "counselorId": "CNS-001",
+  "sessionDate": "2026-09-18",
+  "sessionType": "Individual Counseling",
+  "status": "Completed",
+  "summary": "Student attended scheduled counseling session.",
+  "nextAction": "Follow-up"
+}

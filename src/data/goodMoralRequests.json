@@ -1,0 +1,9 @@
+{
+  "id": "GMR-0001",
+  "studentId": "STU-0001",
+  "requestDate": "2026-09-12",
+  "purpose": "Scholarship Application",
+  "status": "Processing",
+  "processedBy": "FAC-001",
+  "documentId": "DOC-0001"
+}

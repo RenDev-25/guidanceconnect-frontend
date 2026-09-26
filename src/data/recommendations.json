@@ -1,0 +1,8 @@
+{
+  "id": "REC-001",
+  "category": "Service Requests",
+  "condition": "Pending requests exceed the defined threshold.",
+  "suggestedAction": "Review pending requests and consider redistributing workload among available facilitators.",
+  "priority": "High",
+  "generatedFrom": "requestAnalytics"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "APT-0001",
+  "studentId": "STU-0001",
+  "serviceId": "SRV-001",
+  "date": "2026-09-28",
+  "time": "09:00",
+  "mode": "Face-to-Face",
+  "status": "Scheduled",
+  "assignedTo": "FAC-001"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "SNAP-001",
+  "date": "2026-09-20",
+  "metric": "Total Service Requests",
+  "value": 48,
+  "source": "requests.json"
+}

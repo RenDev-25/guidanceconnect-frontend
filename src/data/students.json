@@ -1,0 +1,68 @@
+[
+  {
+    "id": "STU-08125",
+    "studentNumber": "2024-08125",
+    "name": "Renzy",
+    "email": "renzy@g.batstate-u.edu.ph",
+    "program": "BS Information Technology",
+    "yearLevel": 2,
+    "section": "IT-2101",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-1042",
+    "studentNumber": "2024-10042",
+    "name": "Chloe Gonzaga",
+    "email": "cgonzaga@g.batstate-u.edu.ph",
+    "program": "BS Information Technology",
+    "yearLevel": 2,
+    "section": "IT-2101",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-1043",
+    "studentNumber": "2024-10043",
+    "name": "Jiselle Marasigan",
+    "email": "jmarasigan@g.batstate-u.edu.ph",
+    "program": "BS Information Technology",
+    "yearLevel": 2,
+    "section": "IT-2101",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-1044",
+    "studentNumber": "2024-10044",
+    "name": "John Timothy Carranza",
+    "email": "jcarranza@g.batstate-u.edu.ph",
+    "program": "BS Information Technology",
+    "yearLevel": 2,
+    "section": "IT-2101",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-2001",
+    "studentNumber": "2023-20001",
+    "name": "Mark Villanueva",
+    "email": "mvillanueva@g.batstate-u.edu.ph",
+    "program": "BS Computer Science",
+    "yearLevel": 3,
+    "section": "CS-3101",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-2002",
+    "studentNumber": "2025-20002",
+    "name": "Sarah Dimaculangan",
+    "email": "sdimaculangan@g.batstate-u.edu.ph",
+    "program": "BS Computer Science",
+    "yearLevel": 1,
+    "section": "CS-1102",
+    "campus": "Alangilan",
+    "status": "Inactive"
+  }
+]

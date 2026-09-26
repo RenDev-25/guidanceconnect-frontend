@@ -1,0 +1,8 @@
+{
+  "id": "FUP-0001",
+  "studentId": "STU-0001",
+  "counselingRecordId": "CR-0001",
+  "scheduledDate": "2026-09-25",
+  "status": "Scheduled",
+  "assignedTo": "CNS-001"
+}

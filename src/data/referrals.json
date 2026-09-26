@@ -1,0 +1,9 @@
+{
+  "id": "REF-0001",
+  "studentId": "STU-0001",
+  "counselingRecordId": "CR-0001",
+  "referredTo": "Career Services",
+  "reason": "Career guidance requested",
+  "status": "Pending",
+  "dateCreated": "2026-09-18"
+}

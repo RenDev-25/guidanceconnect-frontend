@@ -1,0 +1,9 @@
+{
+  "id": "REQ-0001",
+  "studentId": "STU-0001",
+  "serviceType": "Individual Counseling",
+  "status": "Pending",
+  "dateSubmitted": "2026-09-10",
+  "assignedTo": "FAC-001",
+  "priority": "Normal"
+}
