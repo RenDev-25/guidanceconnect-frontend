@@ -63,10 +63,6 @@ export const recommendationService = {
       });
     }
 
-    /*
-     * RULE 3
-     * High cancelled appointments
-     */
     if (
       appointmentAnalytics.cancelled >= 5
     ) {
@@ -86,10 +82,7 @@ export const recommendationService = {
       });
     }
 
-    /*
-     * RULE 4
-     * High pending Good Moral requests
-     */
+    
     if (
       goodMoralAnalytics.pending >= 5
     ) {
