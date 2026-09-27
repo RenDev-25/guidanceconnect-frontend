@@ -13,7 +13,7 @@ const Button = ({ variant = 'primary', size, isLoading, className = '', children
   return (
     <button
         type="button"
-        className={`btn btn-${variant} ${sizeClass} ${className}`}
+        className={`btn btn-${variant} ${sizeClass} ${className}`}  
         disabled={isLoading || disabled}
         {...props}
         >
