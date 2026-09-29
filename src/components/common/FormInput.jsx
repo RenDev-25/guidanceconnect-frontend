@@ -7,13 +7,30 @@
  * @param {string} [props.type='text']
  * @param {string|number} props.value
  * @param {function} props.onChange
- * @param {string} [props.error] - Error message to display below input
+ * @param {string} [props.error]
+ * @param {string} [props.helpText]
  * @param {string} [props.placeholder]
  */
-const FormInput = ({ label, name, type = 'text', value, onChange, error, placeholder, ...props }) => {
+
+const FormInput = ({
+  label,
+  name,
+  type = 'text',
+  value,
+  onChange,
+  error,
+  helpText,
+  placeholder,
+  ...props
+}) => {
   return (
     <div className="mb-3 text-start">
-      {label && <label htmlFor={name} className="form-label fw-semibold">{label}</label>}
+      {label && (
+        <label htmlFor={name} className="form-label fw-semibold">
+          {label}
+        </label>
+      )}
+
       <input
         type={type}
         className={`form-control ${error ? 'is-invalid' : ''}`}
@@ -24,9 +41,21 @@ const FormInput = ({ label, name, type = 'text', value, onChange, error, placeho
         placeholder={placeholder}
         {...props}
       />
-      {error && <div className="invalid-feedback">{error}</div>}
+
+      {helpText && (
+        <small className="form-text text-muted">
+          {helpText}
+        </small>
+      )}
+
+      {error && (
+        <div className="invalid-feedback">
+          {error}
+        </div>
+      )}
     </div>
   );
 };
 
 export default FormInput;
+

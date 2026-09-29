@@ -11,6 +11,13 @@ const TABLE = "gc_appointments";
 initTable(TABLE, rawAppointments);
 
 export const appointmentService = {
+  // ALIAS ADDED HERE to prevent UI crash
+  getByUser: (studentId) => {
+    return getTable(TABLE).filter(
+      (appointment) => appointment.studentId === studentId
+    );
+  },
+
   getAll: () => {
     return getTable(TABLE);
   },
@@ -23,22 +30,19 @@ export const appointmentService = {
 
   getByStudent: (studentId) => {
     return getTable(TABLE).filter(
-      (appointment) =>
-        appointment.studentId === studentId
+      (appointment) => appointment.studentId === studentId
     );
   },
 
   getByDate: (date) => {
     return getTable(TABLE).filter(
-      (appointment) =>
-        appointment.date === date
+      (appointment) => appointment.date === date
     );
   },
 
   getByStatus: (status) => {
     return getTable(TABLE).filter(
-      (appointment) =>
-        appointment.status === status
+      (appointment) => appointment.status === status
     );
   },
 
@@ -76,8 +80,7 @@ export const appointmentService = {
     saveTable(TABLE, updatedAppointments);
 
     return updatedAppointments.find(
-      (appointment) =>
-        appointment.id === id
+      (appointment) => appointment.id === id
     );
   },
 

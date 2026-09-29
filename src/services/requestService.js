@@ -10,31 +10,43 @@ const TABLE = "gc_requests";
 
 initTable(TABLE, rawRequests);
 
+const getRequests = () => {
+  const records = getTable(TABLE);
+
+  return Array.isArray(records) ? records : [];
+};
+
 export const requestService = {
   getAll: () => {
-    return getTable(TABLE);
+    return getRequests();
   },
 
   getById: (id) => {
-    return getTable(TABLE).find(
+    const records = getRequests();
+
+    return records.find(
       (request) => request.id === id
     );
   },
 
   getByStudent: (studentId) => {
-    return getTable(TABLE).filter(
+    const records = getRequests();
+
+    return records.filter(
       (request) => request.studentId === studentId
     );
   },
 
   getByStatus: (status) => {
-    return getTable(TABLE).filter(
+    const records = getRequests();
+
+    return records.filter(
       (request) => request.status === status
     );
   },
 
   create: (data) => {
-    const requests = getTable(TABLE);
+    const requests = getRequests();
 
     const newRequest = {
       id: `REQ-${String(requests.length + 1).padStart(4, "0")}`,
@@ -52,7 +64,7 @@ export const requestService = {
   },
 
   updateStatus: (id, status) => {
-    const requests = getTable(TABLE);
+    const requests = getRequests();
 
     const updatedRequests = requests.map((request) =>
       request.id === id

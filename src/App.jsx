@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Layouts
 import StudentLayout from './layouts/StudentLayout';
@@ -19,14 +15,28 @@ import Login from './pages/auth/Login';
 import Unauthorized from './pages/auth/Unauthorized';
 import StyleGuide from './pages/dev/StyleGuide';
 
+// Student Domain Pages
+import StudentDashboard from './pages/student/StudentDashboard';
+import ServiceRequest from './pages/student/ServiceRequest';
+import CounselingRequest from './pages/student/CounselingRequest';
+import AppointmentPage from './pages/student/AppointmentPage';
+import AppointmentCalendar from './pages/student/AppointmentCalendar';
+import GoodMoralRequest from './pages/student/GoodMoralRequest';
+import DocumentUpload from './pages/student/DocumentUpload';
+import RequestTracking from './pages/student/RequestTracking';
+import ServiceHistory from './pages/student/ServiceHistory';
+import Notifications from './pages/student/Notifications';
+import Announcements from './pages/student/Announcements';
+import Profile from './pages/student/Profile';
+import AIAssistant from './pages/student/AIAssistant';
+
 function Placeholder({ title }) {
   return (
     <div className="container-fluid">
       <div className="mb-4">
         <h2>{title}</h2>
         <p className="text-muted">
-          This is a placeholder page for the
-          Guidance and Counseling System.
+          This is a placeholder page for the Guidance and Counseling System.
         </p>
       </div>
     </div>
@@ -36,306 +46,77 @@ function Placeholder({ title }) {
 function App() {
   return (
     <Routes>
-
       {/* ========================================
           PUBLIC ROUTES
       ======================================== */}
-
-      <Route
-        path="/login"
-        element={<Login />}
-      />
-
-      <Route
-        path="/unauthorized"
-        element={<Unauthorized />}
-      />
-
-      <Route
-        path="/dev/style-guide"
-        element={<StyleGuide />}
-      />
-
+      <Route path="/login" element={<Login />} />
+      <Route path="/unauthorized" element={<Unauthorized />} />
+      <Route path="/dev/style-guide" element={<StyleGuide />} />
 
       {/* ========================================
           PROTECTED ROUTES
       ======================================== */}
-
       <Route element={<ProtectedRoute />}>
-
-
+        
         {/* ========================================
             STUDENT
         ======================================== */}
-
-        <Route
-          element={
-            <RoleRoute
-              allowedRoles={['student']}
-            />
-          }
-        >
-          <Route
-            path="/student"
-            element={<StudentLayout />}
-          >
-            <Route
-              index
-              element={
-                <Navigate
-                  to="dashboard"
-                  replace
-                />
-              }
-            />
-
-            <Route
-              path="dashboard"
-              element={
-                <Placeholder
-                  title="Student Dashboard"
-                />
-              }
-            />
-
-            <Route
-              path="requests"
-              element={
-                <Placeholder
-                  title="Service Requests"
-                />
-              }
-            />
-
-            <Route
-              path="appointments"
-              element={
-                <Placeholder
-                  title="Appointments"
-                />
-              }
-            />
-
-            <Route
-              path="counseling"
-              element={
-                <Placeholder
-                  title="Counseling"
-                />
-              }
-            />
-
-            <Route
-              path="good-moral"
-              element={
-                <Placeholder
-                  title="Good Moral Request"
-                />
-              }
-            />
+        <Route element={<RoleRoute allowedRoles={['student']} />}>
+          <Route path="/student" element={<StudentLayout />}>
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<StudentDashboard />} />
+            <Route path="service-request" element={<ServiceRequest />} />
+            <Route path="counseling-request" element={<CounselingRequest />} />
+            <Route path="appointments" element={<AppointmentPage />} />
+            <Route path="appointment-calendar" element={<AppointmentCalendar />} />
+            <Route path="good-moral-request" element={<GoodMoralRequest />} />
+            <Route path="document-upload" element={<DocumentUpload />} />
+            <Route path="request-tracking" element={<RequestTracking />} />
+            <Route path="service-history" element={<ServiceHistory />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="announcements" element={<Announcements />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="ai-assistant" element={<AIAssistant />} />
           </Route>
         </Route>
-
 
         {/* ========================================
             FACILITATOR
         ======================================== */}
-
-        <Route
-          element={
-            <RoleRoute
-              allowedRoles={['facilitator']}
-            />
-          }
-        >
-          <Route
-            path="/facilitator"
-            element={<FacilitatorLayout />}
-          >
-            <Route
-              index
-              element={
-                <Navigate
-                  to="dashboard"
-                  replace
-                />
-              }
-            />
-
-            <Route
-              path="dashboard"
-              element={
-                <Placeholder
-                  title="Facilitator Dashboard"
-                />
-              }
-            />
-
-            <Route
-              path="requests"
-              element={
-                <Placeholder
-                  title="Requests"
-                />
-              }
-            />
-
-            <Route
-              path="appointments"
-              element={
-                <Placeholder
-                  title="Appointments"
-                />
-              }
-            />
-
-            <Route
-              path="counseling"
-              element={
-                <Placeholder
-                  title="Counseling Records"
-                />
-              }
-            />
-
-            <Route
-              path="students"
-              element={
-                <Placeholder
-                  title="Student Records"
-                />
-              }
-            />
+        <Route element={<RoleRoute allowedRoles={['facilitator']} />}>
+          <Route path="/facilitator" element={<FacilitatorLayout />}>
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<Placeholder title="Facilitator Dashboard" />} />
+            <Route path="requests" element={<Placeholder title="Requests" />} />
+            <Route path="appointments" element={<Placeholder title="Appointments" />} />
+            <Route path="counseling" element={<Placeholder title="Counseling Records" />} />
+            <Route path="students" element={<Placeholder title="Student Records" />} />
           </Route>
         </Route>
-
 
         {/* ========================================
             COUNSELOR / ADMIN
         ======================================== */}
-
-        <Route
-          element={
-            <RoleRoute
-              allowedRoles={['counselor']}
-            />
-          }
-        >
-          <Route
-            path="/admin"
-            element={<AdminLayout />}
-          >
-            <Route
-              index
-              element={
-                <Navigate
-                  to="dashboard"
-                  replace
-                />
-              }
-            />
-
-            <Route
-              path="dashboard"
-              element={
-                <Placeholder
-                  title="Counselor Dashboard"
-                />
-              }
-            />
-
-            <Route
-              path="requests"
-              element={
-                <Placeholder
-                  title="Requests"
-                />
-              }
-            />
-
-            <Route
-              path="appointments"
-              element={
-                <Placeholder
-                  title="Appointments"
-                />
-              }
-            />
-
-            <Route
-              path="counseling"
-              element={
-                <Placeholder
-                  title="Counseling"
-                />
-              }
-            />
-
-            <Route
-              path="students"
-              element={
-                <Placeholder
-                  title="Students"
-                />
-              }
-            />
-
-            <Route
-              path="analytics"
-              element={
-                <Placeholder
-                  title="Reports & Analytics"
-                />
-              }
-            />
-
-            <Route
-              path="users"
-              element={
-                <Placeholder
-                  title="User Management"
-                />
-              }
-            />
-
-            <Route
-              path="settings"
-              element={
-                <Placeholder
-                  title="Settings"
-                />
-              }
-            />
+        <Route element={<RoleRoute allowedRoles={['counselor']} />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<Placeholder title="Counselor Dashboard" />} />
+            <Route path="requests" element={<Placeholder title="Requests" />} />
+            <Route path="appointments" element={<Placeholder title="Appointments" />} />
+            <Route path="counseling" element={<Placeholder title="Counseling" />} />
+            <Route path="students" element={<Placeholder title="Students" />} />
+            <Route path="analytics" element={<Placeholder title="Reports & Analytics" />} />
+            <Route path="users" element={<Placeholder title="User Management" />} />
+            <Route path="settings" element={<Placeholder title="Settings" />} />
           </Route>
         </Route>
-
       </Route>
-
 
       {/* ========================================
           DEFAULT ROUTE
       ======================================== */}
-
-      <Route
-        path="/"
-        element={
-          <Navigate
-            to="/login"
-            replace
-          />
-        }
-      />
-
-      <Route
-        path="*"
-        element={
-          <Navigate
-            to="/login"
-            replace
-          />
-        }
-      />
-
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 }

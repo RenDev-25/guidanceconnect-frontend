@@ -3,26 +3,22 @@ import rawServices from "../data/services.json";
 
 const TABLE = "gc_services";
 
+// Initialize the mock services table
 initTable(TABLE, rawServices);
 
 export const serviceService = {
-  getAll: () => {
+  // Get all available OGC services
+  getAll() {
     return getTable(TABLE);
   },
 
-  getById: (id) => {
-    return getTable(TABLE).find(
-      (service) => service.id === id
-    );
+  // Get a specific service by ID
+  getById(id) {
+    return getTable(TABLE).find((service) => service.id === id);
   },
 
-  getByCategory: (category) => {
-    return getTable(TABLE).filter(
-      (service) => service.category === category
-    );
-  },
-
-  getActiveServices: () => {
+  // Get only active services
+  getActiveServices() {
     return getTable(TABLE).filter(
       (service) => service.status === "Active"
     );

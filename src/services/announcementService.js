@@ -1,84 +1,33 @@
-import {
-  initTable,
-  getTable,
-  saveTable,
-} from "../utils/mockDb";
-
-import rawAnnouncements from "../data/announcements.json";
-
-const TABLE = "gc_announcements";
-
-initTable(TABLE, rawAnnouncements);
+let mockAnnouncements = [
+  {
+    id: 1,
+    category: 'Events',
+    title: 'Mental Health Awareness Month',
+    content: 'Join us for a series of seminars and wellness activities starting next week at the CICS building.',
+    date: '2026-09-28'
+  },
+  {
+    id: 2,
+    category: 'Deadlines',
+    title: 'Good Moral Certificate Cutoff',
+    content: 'The deadline for requesting Good Moral Certificates for this semester is October 15, 2026.',
+    date: '2026-09-25'
+  },
+  {
+    id: 3,
+    category: 'General',
+    title: 'New OGC Office Hours',
+    content: 'Starting October, the Office of Guidance and Counseling will be open from 8:00 AM to 6:00 PM.',
+    date: '2026-09-20'
+  }
+];
 
 export const announcementService = {
   getAll: () => {
-    return getTable(TABLE);
+    return mockAnnouncements;
   },
 
   getById: (id) => {
-    return getTable(TABLE).find(
-      (announcement) =>
-        announcement.id === id
-    );
-  },
-
-  getPublished: () => {
-    return getTable(TABLE).filter(
-      (announcement) =>
-        announcement.status === "Published"
-    );
-  },
-
-  getByAudience: (audience) => {
-    return getTable(TABLE).filter(
-      (announcement) =>
-        announcement.audience === audience ||
-        announcement.audience === "All"
-    );
-  },
-
-  create: (data) => {
-    const announcements =
-      getTable(TABLE);
-
-    const newAnnouncement = {
-      id: `ANN-${String(
-        announcements.length + 1
-      ).padStart(4, "0")}`,
-      ...data,
-    };
-
-    saveTable(TABLE, [
-      ...announcements,
-      newAnnouncement,
-    ]);
-
-    return newAnnouncement;
-  },
-
-  update: (id, updates) => {
-    const announcements =
-      getTable(TABLE);
-
-    const updatedAnnouncements =
-      announcements.map(
-        (announcement) =>
-          announcement.id === id
-            ? {
-                ...announcement,
-                ...updates,
-              }
-            : announcement
-      );
-
-    saveTable(
-      TABLE,
-      updatedAnnouncements
-    );
-
-    return updatedAnnouncements.find(
-      (announcement) =>
-        announcement.id === id
-    );
-  },
+    return mockAnnouncements.find(a => a.id === id);
+  }
 };

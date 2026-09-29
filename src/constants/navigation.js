@@ -6,7 +6,7 @@ export const studentNav = [
   },
   {
     label: "Service Requests",
-    path: "/student/requests",
+    path: "/student/service-request",
     icon: "FaClipboardList",
   },
   {
@@ -16,12 +16,12 @@ export const studentNav = [
   },
   {
     label: "Counseling",
-    path: "/student/counseling",
+    path: "/student/counseling-request",
     icon: "FaComments",
   },
   {
     label: "Good Moral",
-    path: "/student/good-moral",
+    path: "/student/good-moral-request",
     icon: "FaFileAlt",
   },
 ];

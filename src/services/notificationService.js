@@ -1,63 +1,47 @@
-import {
-  initTable,
-  getTable,
-  saveTable,
-} from "../utils/mockDb";
-
-import rawNotifications from "../data/notifications.json";
-
-const TABLE = "gc_notifications";
-
-initTable(TABLE, rawNotifications);
+let mockNotifications = [
+  {
+    id: 1,
+    userId: 'STU-001',
+    type: 'success',
+    title: 'Request Approved',
+    message: 'Your Good Moral Request has been approved.',
+    isRead: false,
+    date: '2 Hours ago'
+  },
+  {
+    id: 2,
+    userId: 'STU-001',
+    type: 'info',
+    title: 'Appointment Reminder',
+    message: 'You have a counseling session tomorrow at 10:00 AM.',
+    isRead: false,
+    date: '1 Day ago'
+  },
+  {
+    id: 3,
+    userId: 'STU-001',
+    type: 'warning',
+    title: 'Missing Document',
+    message: 'Please upload your ID for the clearance request.',
+    isRead: true,
+    date: '3 Days ago'
+  }
+];
 
 export const notificationService = {
-  getAll: () => {
-    return getTable(TABLE);
-  },
-
-  getById: (id) => {
-    return getTable(TABLE).find(
-      (notification) =>
-        notification.id === id
-    );
-  },
-
   getByUser: (userId) => {
-    return getTable(TABLE).filter(
-      (notification) =>
-        notification.userId === userId
-    );
+    return mockNotifications.filter(n => n.userId === userId);
   },
-
-  getUnreadByUser: (userId) => {
-    return getTable(TABLE).filter(
-      (notification) =>
-        notification.userId === userId &&
-        !notification.isRead
-    );
-  },
-
+  
   markAsRead: (id) => {
-    const notifications = getTable(TABLE);
-
-    const updatedNotifications =
-      notifications.map((notification) =>
-        notification.id === id
-          ? {
-              ...notification,
-              isRead: true,
-            }
-          : notification
-      );
-
-    saveTable(
-      TABLE,
-      updatedNotifications
-    );
-
-    return updatedNotifications.find(
-      (notification) =>
-        notification.id === id
+    mockNotifications = mockNotifications.map(n => 
+      n.id === id ? { ...n, isRead: true } : n
     );
   },
+
+  markAllAsRead: (userId) => {
+    mockNotifications = mockNotifications.map(n => 
+      n.userId === userId ? { ...n, isRead: true } : n
+    );
+  }
 };

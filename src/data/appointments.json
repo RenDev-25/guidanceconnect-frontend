@@ -1,0 +1,20 @@
+[
+  {
+    "id": "APT-0001",
+    "studentId": "STU-001",
+    "type": "Routine Counseling",
+    "date": "2026-10-02",
+    "time": "10:00 AM",
+    "status": "Confirmed",
+    "counselor": "Dr. Santos"
+  },
+  {
+    "id": "APT-0002",
+    "studentId": "STU-001",
+    "type": "Academic Advising",
+    "date": "2026-10-15",
+    "time": "02:00 PM",
+    "status": "Pending",
+    "counselor": "TBD"
+  }
+]
