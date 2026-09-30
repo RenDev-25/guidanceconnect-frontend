@@ -1,9 +1,14 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import RoleRoute from '../components/common/RoleRoute'; // or wherever your RoleRoute is stored
-import StudentLayout from '../layouts/StudentLayout';
 
-// Import all 13 Student Pages
+import RoleRoute from '../routes/RoleRoute';
+
+import StudentLayout from '../layouts/StudentLayout';
+import FacilitatorLayout from '../layouts/FacilitatorLayout';
+
+// ===============================
+// Student Pages
+// ===============================
 import StudentDashboard from '../pages/student/StudentDashboard';
 import ServiceRequest from '../pages/student/ServiceRequest';
 import CounselingRequest from '../pages/student/CounselingRequest';
@@ -18,10 +23,26 @@ import Announcements from '../pages/student/Announcements';
 import Profile from '../pages/student/Profile';
 import AIAssistant from '../pages/student/AIAssistant';
 
+// ===============================
+// Facilitator Pages
+// ===============================
+import FacilitatorDashboard from '../pages/facilitator/FacilitatorDashboard';
+import RequestQueue from '../pages/facilitator/RequestQueue';
+import RequestDetails from '../pages/facilitator/RequestDetails';
+import DocumentVerification from '../pages/facilitator/DocumentVerification';
+import AppointmentManagement from '../pages/facilitator/AppointmentManagement';
+import WalkInQueue from '../pages/facilitator/WalkInQueue';
+import DailyTasks from '../pages/facilitator/DailyTasks';
+import StudentRequestProcessing from '../pages/facilitator/StudentRequestProcessing';
+import FacilitatorNotifications from '../pages/facilitator/Notifications';
+
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* Student Portal Routes */}
+
+      {/* =========================================
+          STUDENT PORTAL ROUTES
+      ========================================= */}
       <Route
         path="/student"
         element={
@@ -31,6 +52,7 @@ const AppRoutes = () => {
         }
       >
         <Route index element={<Navigate to="dashboard" replace />} />
+
         <Route path="dashboard" element={<StudentDashboard />} />
         <Route path="service-request" element={<ServiceRequest />} />
         <Route path="counseling-request" element={<CounselingRequest />} />
@@ -45,6 +67,67 @@ const AppRoutes = () => {
         <Route path="profile" element={<Profile />} />
         <Route path="ai-assistant" element={<AIAssistant />} />
       </Route>
+
+
+      {/* =========================================
+          FACILITATOR PORTAL ROUTES
+      ========================================= */}
+      <Route
+        path="/facilitator"
+        element={
+          <RoleRoute allowedRoles={['facilitator']}>
+            <FacilitatorLayout />
+          </RoleRoute>
+        }
+      >
+        <Route index element={<Navigate to="dashboard" replace />} />
+
+        <Route
+          path="dashboard"
+          element={<FacilitatorDashboard />}
+        />
+
+        <Route
+          path="requests"
+          element={<RequestQueue />}
+        />
+
+        <Route
+          path="requests/:id"
+          element={<RequestDetails />}
+        />
+
+        <Route
+          path="processing"
+          element={<StudentRequestProcessing />}
+        />
+
+        <Route
+          path="verification"
+          element={<DocumentVerification />}
+        />
+
+        <Route
+          path="appointments"
+          element={<AppointmentManagement />}
+        />
+
+        <Route
+          path="walk-ins"
+          element={<WalkInQueue />}
+        />
+
+        <Route
+          path="tasks"
+          element={<DailyTasks />}
+        />
+
+        <Route
+          path="notifications"
+          element={<FacilitatorNotifications />}
+        />
+      </Route>
+
     </Routes>
   );
 };
