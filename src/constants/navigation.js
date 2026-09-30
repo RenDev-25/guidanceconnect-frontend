@@ -27,31 +27,14 @@ export const studentNav = [
 ];
 
 export const facilitatorNav = [
-  {
-    label: "Dashboard",
-    path: "/facilitator/dashboard",
-    icon: "FaHome",
-  },
-  {
-    label: "Requests",
-    path: "/facilitator/requests",
-    icon: "FaClipboardList",
-  },
-  {
-    label: "Appointments",
-    path: "/facilitator/appointments",
-    icon: "FaCalendarAlt",
-  },
-  {
-    label: "Counseling Records",
-    path: "/facilitator/counseling",
-    icon: "FaComments",
-  },
-  {
-    label: "Student Records",
-    path: "/facilitator/students",
-    icon: "FaUsers",
-  },
+  { label: "Dashboard", path: "/facilitator/dashboard", icon: "FaHome" },
+  { label: "Request Queue", path: "/facilitator/requests", icon: "FaClipboardList" },
+  { label: "Document Verification", path: "/facilitator/document-verification", icon: "FaFileAlt" },
+  { label: "Appointments", path: "/facilitator/appointments", icon: "FaCalendarAlt" },
+  { label: "Walk-In Queue", path: "/facilitator/walk-in-queue", icon: "FaUsers" },
+  { label: "Counseling Records", path: "/facilitator/counseling", icon: "FaComments" },
+  { label: "Student Records", path: "/facilitator/students", icon: "FaUsers" },
+  { label: "Notifications", path: "/facilitator/notifications", icon: "FaBell" },
 ];
 
 export const adminNav = [

@@ -1,0 +1,18 @@
+[
+  { 
+    "id": "WLK-0001", 
+    "studentId": "STU-1042", 
+    "studentName": "Chloe Gonzaga", 
+    "purpose": "Good Moral Certificate", 
+    "status": "Waiting", 
+    "timeIn": "09:15 AM" 
+  },
+  { 
+    "id": "WLK-0002", 
+    "studentId": "STU-1043", 
+    "studentName": "Jiselle Marasigan", 
+    "purpose": "Counseling Walk-In", 
+    "status": "Waiting", 
+    "timeIn": "09:22 AM" 
+  }
+]

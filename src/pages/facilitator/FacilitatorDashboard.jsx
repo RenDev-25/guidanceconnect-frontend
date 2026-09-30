@@ -1,75 +1,109 @@
 import React, { useState, useEffect } from 'react';
-import StatCard from '../../components/common/StatCard';
-import DataTable from '../../components/common/DataTable';
 import StatusBadge from '../../components/common/StatusBadge';
 import { requestService } from '../../services/requestService';
 import { appointmentService } from '../../services/appointmentService';
-import { REQUEST_STATUSES } from '../../constants/statusFlow';
+import { walkInService } from '../../services/walkInService';
 
 const FacilitatorDashboard = () => {
   const [stats, setStats] = useState({
-    pending: 0,
-    docsToVerify: 0,
-    appointmentsToday: 0,
-    walkIns: 0,
+    pendingRequests: 0,
+    todayAppointments: 0,
+    walkInsWaiting: 0,
   });
-  const [priorityRequests, setPriorityRequests] = useState([]);
+  const [recentRequests, setRecentRequests] = useState([]);
 
   useEffect(() => {
-    // Fetch data
-    const allRequests = requestService.getAll() || [];
-    const allAppointments = appointmentService.getAll() || [];
-    
-    // Calculate Stats
-    const pendingReqs = allRequests.filter(req => req.status === REQUEST_STATUSES.PENDING);
-    const docsVerifying = allRequests.filter(req => req.hasDocuments && req.status === REQUEST_STATUSES.IN_PROGRESS);
-    
+    const allReqs = requestService.getAll() || [];
+    const pendingReqs = allReqs.filter(r => r.status === 'Pending' || r.status === 'Processing');
     const today = new Date().toISOString().split('T')[0];
-    const todaysAppts = allAppointments.filter(appt => appt.date === today);
-    const walkInsWaiting = allAppointments.filter(appt => appt.type === 'Walk-in' && appt.status === 'Waiting');
+    const appts = (appointmentService.getAll() || []).filter(a => a.date === today);
+    const walkIns = walkInService.getAll() || [];
 
     setStats({
-      pending: pendingReqs.length,
-      docsToVerify: docsVerifying.length,
-      appointmentsToday: todaysAppts.length,
-      walkIns: walkInsWaiting.length,
+      pendingRequests: pendingReqs.length,
+      todayAppointments: appts.length,
+      walkInsWaiting: walkIns.length,
     });
-
-    // Populate Mini DataTable (Show top 5 pending requests)
-    setPriorityRequests(pendingReqs.slice(0, 5));
+    setRecentRequests(allReqs.slice(0, 5));
   }, []);
 
-  const columns = [
-    { key: 'id', label: 'Request ID' },
-    { key: 'studentName', label: 'Student Name' },
-    { key: 'type', label: 'Type' },
-    { 
-      key: 'status', 
-      label: 'Status', 
-      render: (item) => <StatusBadge status={item.status} /> 
-    }
-  ];
-
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-800">Facilitator Dashboard</h1>
-      
-      {/* Workload Snapshot */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard title="Pending Requests" value={stats.pending} icon="clock" color="bg-yellow-100 text-yellow-800" />
-        <StatCard title="Docs to Verify" value={stats.docsToVerify} icon="document" color="bg-blue-100 text-blue-800" />
-        <StatCard title="Today's Appointments" value={stats.appointmentsToday} icon="calendar" color="bg-green-100 text-green-800" />
-        <StatCard title="Walk-ins Waiting" value={stats.walkIns} icon="users" color="bg-purple-100 text-purple-800" />
+    <div className="container-fluid py-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h1 className="h3 fw-bold text-dark">Facilitator Operations Dashboard</h1>
+          <p className="text-muted small">Daily guidance office flow, appointment counts, and walk-in queues.</p>
+        </div>
       </div>
 
-      {/* Priority Action Items */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-        <h2 className="text-lg font-semibold mb-4">Action Needed: Pending Requests</h2>
-        <DataTable 
-          columns={columns} 
-          data={priorityRequests} 
-          onRowClick={(row) => console.log('Navigate to request details:', row.id)} 
-        />
+      {/* Stat Cards */}
+      <div className="row g-4 mb-4">
+        <div className="col-12 col-md-4">
+          <div className="card shadow-sm border-0 border-start border-primary border-4 h-100">
+            <div className="card-body">
+              <p className="text-muted small mb-1">Pending Requests</p>
+              <h2 className="fw-bold text-dark mb-0">{stats.pendingRequests}</h2>
+              <small className="text-muted">Requires review</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-12 col-md-4">
+          <div className="card shadow-sm border-0 border-start border-info border-4 h-100">
+            <div className="card-body">
+              <p className="text-muted small mb-1">Today's Appointments</p>
+              <h2 className="fw-bold text-dark mb-0">{stats.todayAppointments}</h2>
+              <small className="text-muted">Scheduled for today</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-12 col-md-4">
+          <div className="card shadow-sm border-0 border-start border-warning border-4 h-100">
+            <div className="card-body">
+              <p className="text-muted small mb-1">Walk-Ins Waiting</p>
+              <h2 className="fw-bold text-dark mb-0">{stats.walkInsWaiting}</h2>
+              <small className="text-muted">Currently in lobby</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Requests Summary */}
+      <div className="card shadow-sm border-0">
+        <div className="card-header bg-white py-3">
+          <h5 className="fw-bold text-dark mb-0">Recent Service Requests</h5>
+        </div>
+        <div className="card-body p-0">
+          <div className="table-responsive">
+            <table className="table table-hover align-middle mb-0">
+              <thead className="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Student</th>
+                  <th>Service Type</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentRequests.length > 0 ? (
+                  recentRequests.map((req) => (
+                    <tr key={req.id}>
+                      <td className="fw-semibold">{req.id}</td>
+                      <td>{req.studentName || req.studentId}</td>
+                      <td>{req.serviceType || req.type}</td>
+                      <td><StatusBadge status={req.status} /></td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="text-center py-4 text-muted">No recent requests.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );

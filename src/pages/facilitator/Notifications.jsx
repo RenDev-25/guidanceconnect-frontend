@@ -1,67 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import NotificationItem from '../../components/common/NotificationItem';
-import Button from '../../components/common/Button';
 import { notificationService } from '../../services/notificationService';
 
-const Notifications = () => {
+const FacilitatorNotifications = () => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    // Assuming notificationService can filter by role or pull facilitator-specific alerts
-    const fetchNotifications = () => {
-      const allNotifs = notificationService.getAll() || [];
-      // Mock filter: In a real app, this filters by facilitator ID or role
-      const facilitatorNotifs = allNotifs.filter(n => n.targetRole === 'facilitator' || !n.targetRole);
-      setNotifications(facilitatorNotifs);
-    };
-
-    fetchNotifications();
+    setNotifications(notificationService.getAll() || []);
   }, []);
 
-  const handleMarkAsRead = (id) => {
+  const handleMarkRead = (id) => {
     notificationService.markAsRead(id);
-    // Optimistic UI update
-    setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
+    setNotifications(notificationService.getAll());
   };
-
-  const markAllAsRead = () => {
-    notifications.forEach(n => notificationService.markAsRead(n.id));
-    setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
-  };
-
-  const unreadCount = notifications.filter(n => !n.isRead).length;
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800">Notifications</h1>
-          <p className="text-gray-500">You have {unreadCount} unread alerts</p>
+    <div className="container-fluid py-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <div> 
+          <h1 className="h3 fw-bold text-dark">Facilitator Notifications</h1>
+          <p className="text-muted small">System updates, new requests, and queue alerts.</p>
         </div>
-        {unreadCount > 0 && (
-          <Button variant="secondary" onClick={markAllAsRead}>
-            Mark All as Read
-          </Button>
-        )}
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 divide-y divide-gray-100">
-        {notifications.length > 0 ? (
-          notifications.map((notif) => (
-            <NotificationItem 
-              key={notif.id} 
-              notification={notif} 
-              onMarkAsRead={() => handleMarkAsRead(notif.id)} 
-            />
-          ))
-        ) : (
-          <div className="p-8 text-center text-gray-500">
-            No new notifications.
-          </div>
-        )}
+      <div className="card shadow-sm border-0">
+        <div className="list-group list-group-flush">
+          {notifications.length > 0 ? (
+            notifications.map((n) => (
+              <div key={n.id} className={`list-group-item py-3 ${!n.read ? 'bg-light' : ''}`}>
+                <div className="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 className="fw-bold mb-1">{n.title}</h6>
+                    <p className="mb-1 text-muted small">{n.message}</p>
+                    <small className="text-secondary">{n.date || 'Just now'}</small>
+                  </div>
+                  {!n.read && (
+                    <button 
+                      className="btn btn-sm btn-outline-secondary"
+                      onClick={() => handleMarkRead(n.id)}
+                    >
+                      Mark Read
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="text-center py-5 text-muted">
+              No notifications available.
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Notifications;
+export default FacilitatorNotifications;
