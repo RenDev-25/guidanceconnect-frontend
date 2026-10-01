@@ -37,45 +37,23 @@ export const facilitatorNav = [
   { label: "Notifications", path: "/facilitator/notifications", icon: "FaBell" },
 ];
 
+// src/constants/navigation.js
+
+
+
 export const adminNav = [
-  {
-    label: "Dashboard",
-    path: "/admin/dashboard",
-    icon: "FaHome",
-  },
-  {
-    label: "Requests",
-    path: "/admin/requests",
-    icon: "FaClipboardList",
-  },
-  {
-    label: "Appointments",
-    path: "/admin/appointments",
-    icon: "FaCalendarAlt",
-  },
-  {
-    label: "Counseling",
-    path: "/admin/counseling",
-    icon: "FaComments",
-  },
-  {
-    label: "Students",
-    path: "/admin/students",
-    icon: "FaUsers",
-  },
-  {
-    label: "Reports & Analytics",
-    path: "/admin/analytics",
-    icon: "FaChartBar",
-  },
-  {
-    label: "User Management",
-    path: "/admin/users",
-    icon: "FaUserCog",
-  },
-  {
-    label: "Settings",
-    path: "/admin/settings",
-    icon: "FaCog",
-  },
+  { name: 'Dashboard', path: '/admin/dashboard', icon: 'dashboard' },
+  { name: 'Counseling Cases', path: '/admin/counseling', icon: 'chat' },
+  { name: 'Appointments', path: '/admin/appointments', icon: 'calendar' },
+  { name: 'Service Requests', path: '/admin/requests', icon: 'document' },
+  { name: 'Good Moral', path: '/admin/good-moral', icon: 'badge' },
+  { name: 'Referrals', path: '/admin/referrals', icon: 'arrowRight' },
+  { name: 'Follow-Ups', path: '/admin/follow-ups', icon: 'clock' },
+  { name: 'Career Services', path: '/admin/career-services', icon: 'briefcase' },
+  { name: 'Exit Interviews', path: '/admin/exit-interview', icon: 'logout' },
+  { name: 'Programs & Events', path: '/admin/programs', icon: 'star' },
+  { name: 'Announcements', path: '/admin/announcements', icon: 'speaker' },
+  { name: 'User Management', path: '/admin/users', icon: 'users' },
+  { name: 'Audit Log', path: '/admin/audit-log', icon: 'clipboard' },
+  { name: 'System Settings', path: '/admin/settings', icon: 'cog' },
 ];

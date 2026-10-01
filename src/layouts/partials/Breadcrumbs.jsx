@@ -16,7 +16,7 @@ function Breadcrumbs({ items = [] }) {
 
     items = segments.map((segment, index) => {
       const path =
-        "/" + segments.slice(0, index + 1).join("/");
+        "/" + segments.slice(0, index + 1).join("/");C
 
       const label = segment
         .replace(/-/g, " ")
