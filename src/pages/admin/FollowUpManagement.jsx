@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import StatusBadge from '../../components/common/StatusBadge';
+import { followUpService } from '../../services/followUpService';
+import { auditLogService } from '../../services/auditLogService';
 
 const FollowUpManagement = () => {
-  const [followUps, setFollowUps] = useState([
-    { id: 'FU-882', studentName: 'Renzy', reason: 'Post-Counseling Check-in', dueDate: '2026-09-29', status: 'Overdue' },
-    { id: 'FU-883', studentName: 'Mark Lee', reason: 'Academic Probation Monitoring', dueDate: '2026-10-05', status: 'Pending' }
-  ]);
+  const [followUps, setFollowUps] = useState([]);
 
-  const markComplete = (id) => {
-    setFollowUps(prev => prev.map(f => f.id === id ? { ...f, status: 'Completed' } : f));
+  const fetchFollowUps = () => {
+    const data = followUpService.getAll() || [];
+    // Sort by due date ascending
+    const sorted = data.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    setFollowUps(sorted);
+  };
+
+  useEffect(() => fetchFollowUps(), []);
+
+  const handleAction = (id, action) => {
+    const user = JSON.parse(localStorage.getItem('user')) || { id: 'USR-ADMIN' };
+    
+    if (action === 'Complete') {
+      followUpService.updateStatus(id, 'Completed');
+      auditLogService.log(user.id, `Marked follow-up ${id} as completed`);
+    }
+    fetchFollowUps();
+  };
+
+  const isOverdue = (dueDate, status) => {
+    return new Date(dueDate) < new Date() && status !== 'Completed';
   };
 
   return (
     <div className="container-fluid py-4">
       <div className="mb-4">
-        <h1 className="h3 fw-bold text-dark">Follow-Up Tasks</h1>
-        <p className="text-muted small">Monitor required check-ins sorted by due dates. Overdue items require immediate action.</p>
+        <h1 className="h3 fw-bold text-dark">Follow-Up Tracking</h1>
+        <p className="text-muted small mb-0">Monitor required post-session actions and check-ins.</p>
       </div>
 
       <div className="card shadow-sm border-0">
@@ -23,41 +42,34 @@ const FollowUpManagement = () => {
             <table className="table table-hover align-middle mb-0">
               <thead className="table-light">
                 <tr>
-                  <th>Task ID</th>
-                  <th>Student</th>
-                  <th>Reason</th>
                   <th>Due Date</th>
+                  <th>Student Name</th>
+                  <th>Required Action</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {followUps.map((item) => {
-                  const isOverdue = item.status === 'Overdue';
+                {followUps.map(f => {
+                  const overdue = isOverdue(f.dueDate, f.status);
                   return (
-                    <tr key={item.id} className={isOverdue ? 'table-danger' : ''}>
-                      <td><span className="fw-medium">{item.id}</span></td>
-                      <td>{item.studentName}</td>
-                      <td>{item.reason}</td>
-                      <td className={isOverdue ? 'text-danger fw-bold' : ''}>{item.dueDate}</td>
+                    <tr key={f.id} className={overdue ? 'table-danger' : ''}>
                       <td>
-                        <span className={`badge ${item.status === 'Completed' ? 'bg-success' : isOverdue ? 'bg-danger' : 'bg-warning text-dark'}`}>
-                          {item.status}
-                        </span>
+                        <span className={`fw-semibold ${overdue ? 'text-danger' : ''}`}>{f.dueDate}</span>
+                        {overdue && <span className="badge bg-danger ms-2">Overdue</span>}
                       </td>
+                      <td>{f.studentName}</td>
+                      <td>{f.actionRequired}</td>
+                      <td><StatusBadge status={f.status} /></td>
                       <td>
-                        <div className="d-flex gap-2">
+                        {f.status !== 'Completed' && (
                           <button 
                             className="btn btn-sm btn-success" 
-                            onClick={() => markComplete(item.id)}
-                            disabled={item.status === 'Completed'}
+                            onClick={() => handleAction(f.id, 'Complete')}
                           >
-                            <i className="bi bi-check2"></i> Complete
+                            Mark Done
                           </button>
-                          <button className="btn btn-sm btn-outline-secondary" disabled={item.status === 'Completed'}>
-                            Reschedule
-                          </button>
-                        </div>
+                        )}
                       </td>
                     </tr>
                   );

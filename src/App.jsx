@@ -1,4 +1,3 @@
-
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Layouts
@@ -10,12 +9,14 @@ import AdminLayout from './layouts/AdminLayout';
 import ProtectedRoute from './routes/ProtectedRoute';
 import RoleRoute from './routes/RoleRoute';
 
-// Pages
+// Public Pages
 import Login from './pages/auth/Login';
 import Unauthorized from './pages/auth/Unauthorized';
 import StyleGuide from './pages/dev/StyleGuide';
 
-// Student Domain Pages
+// ========================================
+// STUDENT PAGES
+// ========================================
 import StudentDashboard from './pages/student/StudentDashboard';
 import ServiceRequest from './pages/student/ServiceRequest';
 import CounselingRequest from './pages/student/CounselingRequest';
@@ -30,6 +31,28 @@ import Announcements from './pages/student/Announcements';
 import Profile from './pages/student/Profile';
 import AIAssistant from './pages/student/AIAssistant';
 
+// ========================================
+// ADMIN / COUNSELOR PAGES
+// ========================================
+import AdminDashboard from './pages/admin/AdminDashboard';
+import RequestManagement from './pages/admin/RequestManagement';
+import GoodMoralManagement from './pages/admin/GoodMoralManagement';
+import AppointmentManagement from './pages/admin/AppointmentManagement';
+import CounselingManagement from './pages/admin/CounselingManagement';
+import ReferralManagement from './pages/admin/ReferralManagement';
+import FollowUpManagement from './pages/admin/FollowUpManagement';
+import CareerServices from './pages/admin/CareerServices';
+import ProgramsAndActivities from './pages/admin/ProgramsAndActivities';
+import AdminAnnouncements from './pages/admin/Announcements';
+import AdminNotifications from './pages/admin/Notifications';
+import UserManagement from './pages/admin/UserManagement';
+import AuditLog from './pages/admin/AuditLog';
+import SystemSettings from './pages/admin/SystemSettings';
+
+
+// ========================================
+// PLACEHOLDER COMPONENT
+// ========================================
 function Placeholder({ title }) {
   return (
     <div className="container-fluid">
@@ -43,9 +66,14 @@ function Placeholder({ title }) {
   );
 }
 
+
+// ========================================
+// APP ROUTES
+// ========================================
 function App() {
   return (
     <Routes>
+
       {/* ========================================
           PUBLIC ROUTES
       ======================================== */}
@@ -53,11 +81,13 @@ function App() {
       <Route path="/unauthorized" element={<Unauthorized />} />
       <Route path="/dev/style-guide" element={<StyleGuide />} />
 
+
       {/* ========================================
           PROTECTED ROUTES
       ======================================== */}
       <Route element={<ProtectedRoute />}>
-        
+
+
         {/* ========================================
             STUDENT
         ======================================== */}
@@ -80,6 +110,7 @@ function App() {
           </Route>
         </Route>
 
+
         {/* ========================================
             FACILITATOR
         ======================================== */}
@@ -94,29 +125,53 @@ function App() {
           </Route>
         </Route>
 
+
         {/* ========================================
             COUNSELOR / ADMIN
         ======================================== */}
         <Route element={<RoleRoute allowedRoles={['counselor']} />}>
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
-            <Route path="dashboard" element={<Placeholder title="Counselor Dashboard" />} />
-            <Route path="requests" element={<Placeholder title="Requests" />} />
-            <Route path="appointments" element={<Placeholder title="Appointments" />} />
-            <Route path="counseling" element={<Placeholder title="Counseling" />} />
-            <Route path="students" element={<Placeholder title="Students" />} />
+
+            {/* Core Operations */}
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="requests" element={<RequestManagement />} />
+            <Route path="good-moral" element={<GoodMoralManagement />} />
+            <Route path="appointments" element={<AppointmentManagement />} />
+
+            {/* Student Support */}
+            <Route path="counseling" element={<CounselingManagement />} />
+            <Route path="referrals" element={<ReferralManagement />} />
+            <Route path="follow-ups" element={<FollowUpManagement />} />
+            <Route path="career-services" element={<CareerServices />} />
+            <Route path="students" element={<Placeholder title="Student Records" />} />
+
+            {/* Programs & Communication */}
+            <Route path="programs" element={<ProgramsAndActivities />} />
+            <Route path="announcements" element={<AdminAnnouncements />} />
+            <Route path="notifications" element={<AdminNotifications />} />
+
+            {/* Analytics / Intelligence */}
             <Route path="analytics" element={<Placeholder title="Reports & Analytics" />} />
-            <Route path="users" element={<Placeholder title="User Management" />} />
-            <Route path="settings" element={<Placeholder title="Settings" />} />
+            <Route path="prescriptive" element={<Placeholder title="Prescriptive Insights" />} />
+            <Route path="ai-insights" element={<Placeholder title="AI Insights" />} />
+
+            {/* Administration */}
+            <Route path="users" element={<UserManagement />} />
+            <Route path="audit-log" element={<AuditLog />} />
+            <Route path="settings" element={<SystemSettings />} />
           </Route>
         </Route>
+
       </Route>
 
+
       {/* ========================================
-          DEFAULT ROUTE
+          DEFAULT ROUTES
       ======================================== */}
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="*" element={<Navigate to="/login" replace />} />
+
     </Routes>
   );
 }
