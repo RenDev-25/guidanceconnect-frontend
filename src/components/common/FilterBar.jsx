@@ -1,28 +1,49 @@
 
+import React from 'react';
 
-/**
- * Horizontal row of filter pills/buttons
- * @param {Object} props
- * @param {Array} props.filters - Array of string categories e.g., ['All', 'Pending', 'Completed']
- * @param {string} props.activeFilter - The currently selected filter
- * @param {function} props.onFilterChange - (filterName) => void
- */
-const FilterBar = ({ filters, activeFilter, onFilterChange }) => {
+const FilterBar = ({
+  filters = [],
+  activeFilter = '',
+  onFilterChange = () => {},
+  onSearch,
+  searchPlaceholder = 'Search...',
+}) => {
+  const safeFilters = Array.isArray(filters) ? filters : [];
+
   return (
-    <div className="d-flex flex-wrap gap-2 mb-3">
-      {filters.map((filter, index) => (
-        <button
+    <div className="d-flex flex-wrap align-items-center gap-2 mb-3">
+      {typeof onSearch === 'function' && (
+        <input
+          type="text"
+          className="form-control"
+          placeholder={searchPlaceholder}
+          onChange={(event) => onSearch(event.target.value)}
+          style={{ maxWidth: '300px' }}
+        />
+      )}
+
+      {safeFilters.map((filter, index) => {
+        const label =
+          typeof filter === 'string' ? filter : filter.label;
+
+        const value =
+          typeof filter === 'string' ? filter : filter.value;
+
+        return (
+          <button
             type="button"
-            key={index}
+            key={`${label}-${index}`}
             className={`btn btn-sm rounded-pill px-3 ${
-                activeFilter === filter
+              activeFilter === value
                 ? 'btn-primary'
                 : 'btn-outline-secondary'
             }`}
-            onClick={() => onFilterChange(filter)}
-            >
-        </button>
-      ))}
+            onClick={() => onFilterChange(value)}
+          >
+            {label}
+          </button>
+        );
+      })}
     </div>
   );
 };

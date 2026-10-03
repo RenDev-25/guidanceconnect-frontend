@@ -31,6 +31,18 @@ import Announcements from './pages/student/Announcements';
 import Profile from './pages/student/Profile';
 import AIAssistant from './pages/student/AIAssistant';
 
+
+// FACILITATOR PAGES
+import FacilitatorDashboard from './pages/facilitator/FacilitatorDashboard';
+import RequestQueue from './pages/facilitator/RequestQueue';
+import DocumentVerification from './pages/facilitator/DocumentVerification';
+import FacilitatorAppointmentManagement from './pages/facilitator/AppointmentManagement';
+import WalkInQueue from './pages/facilitator/WalkInQueue';
+import CounselingRecords from './pages/facilitator/CounselingRecords';
+import FacilitatorStudentRecords from './pages/facilitator/StudentRecords';
+import FacilitatorNotifications from './pages/facilitator/Notifications';
+
+
 // ========================================
 // ADMIN / COUNSELOR PAGES
 // ========================================
@@ -111,19 +123,53 @@ function App() {
         </Route>
 
 
-        {/* ========================================
-            FACILITATOR
-        ======================================== */}
-        <Route element={<RoleRoute allowedRoles={['facilitator']} />}>
-          <Route path="/facilitator" element={<FacilitatorLayout />}>
-            <Route index element={<Navigate to="dashboard" replace />} />
-            <Route path="dashboard" element={<Placeholder title="Facilitator Dashboard" />} />
-            <Route path="requests" element={<Placeholder title="Requests" />} />
-            <Route path="appointments" element={<Placeholder title="Appointments" />} />
-            <Route path="counseling" element={<Placeholder title="Counseling Records" />} />
-            <Route path="students" element={<Placeholder title="Student Records" />} />
+                        
+          {/* FACILITATOR */}
+          <Route element={<RoleRoute allowedRoles={['facilitator']} />}>
+            <Route path="/facilitator" element={<FacilitatorLayout />}>
+              <Route index element={<Navigate to="dashboard" replace />} />
+
+              <Route
+                path="dashboard"
+                element={<Placeholder title="Facilitator Dashboard" />}
+              />
+
+              <Route
+                path="requests"
+                element={<Placeholder title="Requests" />}
+              />
+
+              <Route
+                path="document-verification"
+                element={<DocumentVerification />}
+              />
+
+              <Route
+                path="appointments"
+                element={<Placeholder title="Appointments" />}
+              />
+
+              <Route
+                path="walk-in-queue"
+                element={<WalkInQueue />}
+              />
+
+              <Route
+                path="counseling"
+                element={<Placeholder title="Counseling Records" />}
+              />
+
+              <Route
+                path="students"
+                element={<Placeholder title="Student Records" />}
+              />
+
+              <Route
+                path="notifications"
+                element={<FacilitatorNotifications />}
+              />
+            </Route>
           </Route>
-        </Route>
 
 
         {/* ========================================

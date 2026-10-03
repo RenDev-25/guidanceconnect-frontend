@@ -34,7 +34,7 @@ const SystemSettings = () => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem('user')) || { id: 'USR-ADMIN' };
 
-    settingsService.save(settings);
+     settingsService.update(settings);
     auditLogService.log(user.id, `Updated System Settings and Stage 15 Prescriptive Analytics thresholds`);
 
     setSavedSuccess(true);

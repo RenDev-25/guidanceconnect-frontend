@@ -1,17 +1,73 @@
-// src/utils/mockDb.js
+const backupInvalidTable = (tableName, rawData) => {
+  const backupKey = `${tableName}__invalid_backup`;
 
-export const initTable = (tableName, initialData) => {
-  // Only initialize if the table doesn't already exist in localStorage
-  if (!localStorage.getItem(tableName)) {
-    localStorage.setItem(tableName, JSON.stringify(initialData || []));
+  // Preserve the original value before replacing it.
+  if (!localStorage.getItem(backupKey)) {
+    localStorage.setItem(backupKey, rawData);
+  }
+};
+
+export const initTable = (tableName, initialData = []) => {
+  const fallbackData = Array.isArray(initialData)
+    ? initialData
+    : [];
+
+  const storedData = localStorage.getItem(tableName);
+
+  if (storedData === null) {
+    localStorage.setItem(
+      tableName,
+      JSON.stringify(fallbackData)
+    );
+    return;
+  }
+
+  try {
+    const parsedData = JSON.parse(storedData);
+
+    if (!Array.isArray(parsedData)) {
+      backupInvalidTable(tableName, storedData);
+
+      localStorage.setItem(
+        tableName,
+        JSON.stringify(fallbackData)
+      );
+    }
+  } catch {
+    backupInvalidTable(tableName, storedData);
+
+    localStorage.setItem(
+      tableName,
+      JSON.stringify(fallbackData)
+    );
   }
 };
 
 export const getTable = (tableName) => {
-  const data = localStorage.getItem(tableName);
-  return data ? JSON.parse(data) : [];
+  const storedData = localStorage.getItem(tableName);
+
+  if (!storedData) {
+    return [];
+  }
+
+  try {
+    const parsedData = JSON.parse(storedData);
+
+    return Array.isArray(parsedData) ? parsedData : [];
+  } catch {
+    return [];
+  }
 };
 
 export const saveTable = (tableName, data) => {
-  localStorage.setItem(tableName, JSON.stringify(data));
+  if (!Array.isArray(data)) {
+    throw new TypeError(
+      `Cannot save "${tableName}": expected an array of records.`
+    );
+  }
+
+  localStorage.setItem(
+    tableName,
+    JSON.stringify(data)
+  );
 };

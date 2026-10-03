@@ -115,12 +115,27 @@ const AppointmentManagement = () => {
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 space-y-4">
-        <FilterBar 
-          onSearch={(val) => setFilters(prev => ({ ...prev, search: val }))}
-          onFilterChange={(val) => setFilters(prev => ({ ...prev, status: val }))}
-          filterOptions={statusOptions}
-          searchPlaceholder="Search by Student Name..."
-        />
+        
+            
+            <FilterBar
+              filters={statusOptions}
+              activeFilter={filters.status}
+              onFilterChange={(value) =>
+                setFilters((prev) => ({
+                  ...prev,
+                  status: value,
+                }))
+              }
+              onSearch={(value) =>
+                setFilters((prev) => ({
+                  ...prev,
+                  search: value,
+                }))
+              }
+              searchPlaceholder="Search by Student Name..."
+            />
+
+
         
         <DataTable columns={columns} data={filteredAppointments} />
       </div>

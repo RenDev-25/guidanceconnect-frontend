@@ -1,3 +1,4 @@
+
 let mockNotifications = [
   {
     id: 1,
@@ -6,7 +7,7 @@ let mockNotifications = [
     title: 'Request Approved',
     message: 'Your Good Moral Request has been approved.',
     isRead: false,
-    date: '2 Hours ago'
+    date: '2 Hours ago',
   },
   {
     id: 2,
@@ -15,7 +16,7 @@ let mockNotifications = [
     title: 'Appointment Reminder',
     message: 'You have a counseling session tomorrow at 10:00 AM.',
     isRead: false,
-    date: '1 Day ago'
+    date: '1 Day ago',
   },
   {
     id: 3,
@@ -24,24 +25,38 @@ let mockNotifications = [
     title: 'Missing Document',
     message: 'Please upload your ID for the clearance request.',
     isRead: true,
-    date: '3 Days ago'
-  }
+    date: '3 Days ago',
+  },
 ];
 
 export const notificationService = {
-  getByUser: (userId) => {
-    return mockNotifications.filter(n => n.userId === userId);
+  // Return all notifications
+  getAll: () => {
+    return [...mockNotifications];
   },
-  
-  markAsRead: (id) => {
-    mockNotifications = mockNotifications.map(n => 
-      n.id === id ? { ...n, isRead: true } : n
+
+  // Return notifications belonging to a specific user
+  getByUser: (userId) => {
+    return mockNotifications.filter(
+      (notification) => notification.userId === userId
     );
   },
 
-  markAllAsRead: (userId) => {
-    mockNotifications = mockNotifications.map(n => 
-      n.userId === userId ? { ...n, isRead: true } : n
+  // Mark one notification as read
+  markAsRead: (id) => {
+    mockNotifications = mockNotifications.map((notification) =>
+      notification.id === id
+        ? { ...notification, isRead: true }
+        : notification
     );
-  }
+  },
+
+  // Mark all notifications for a specific user as read
+  markAllAsRead: (userId) => {
+    mockNotifications = mockNotifications.map((notification) =>
+      notification.userId === userId
+        ? { ...notification, isRead: true }
+        : notification
+    );
+  },
 };
