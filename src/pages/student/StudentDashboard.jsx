@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -157,112 +156,119 @@ const StudentDashboard = () => {
         />
       </DashboardGrid>
 
-      {/* Next appointment highlight */}
-      <Card
-        title="Next Appointment"
-        className="mb-4"
-      >
-        {nextAppointment ? (
-          <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
-            <div className="d-flex align-items-start gap-3">
-              <div className="rounded-3 bg-danger-subtle text-danger p-3">
-                <FaCalendarAlt size={24} />
-              </div>
-
-              <div>
-                <h5 className="fw-bold mb-1">
-                  {nextAppointment.type || 'Counseling Appointment'}
-                </h5>
-
-                <p className="text-muted mb-1">
-                  <FaCalendarAlt className="me-2" />
-                  {formatDate(nextAppointment.date)}
-                </p>
-
-                {nextAppointment.time && (
-                  <p className="text-muted mb-1">
-                    <FaClock className="me-2" />
-                    {nextAppointment.time}
-                  </p>
-                )}
-
-                {nextAppointment.counselor && (
-                  <p className="text-muted small mb-2">
-                    Counselor: {nextAppointment.counselor}
-                  </p>
-                )}
-
-                <StatusBadge status={nextAppointment.status} />
-              </div>
-            </div>
-
-            <button
-              type="button"
-              className="btn btn-outline-danger align-self-md-center"
-              onClick={() => navigate('/student/appointments')}
-            >
-              View Appointments
-              <FaArrowRight className="ms-2" />
-            </button>
-          </div>
-        ) : (
-          <EmptyState
-            message="You don't have any upcoming appointments."
-            icon="bi-calendar-x"
-            action={
+      {/* Secondary Content: Side-by-side layout */}
+      <div className="row g-4 mb-4">
+        {/* Recent Activity */}
+        <div className="col-12 col-lg-7 col-xl-8">
+          <Card
+            title="Recent Activity"
+            className="h-100"
+            headerActions={
               <button
                 type="button"
-                className="btn btn-outline-danger"
-                onClick={() => navigate('/student/appointments')}
-              >
-                View Appointments
-              </button>
-            }
-          />
-        )}
-      </Card>
-
-      {/* Recent activity */}
-      <Card
-        title="Recent Activity"
-        headerActions={
-          <button
-            type="button"
-            className="btn btn-sm btn-outline-danger"
-            onClick={() => navigate('/student/service-request')}
-          >
-            View Requests
-            <FaArrowRight className="ms-2" />
-          </button>
-        }
-      >
-        {(Array.isArray(stats.recentActivity) ? stats.recentActivity  : [] ).length > 0 ? (
-          <DataTable
-            columns={recentActivityColumns}
-            data={
-              Array.isArray(stats.recentActivity)
-                ? stats.recentActivity
-                : []
-            }
-            keyField="id"
-          />
-        ) : (
-          <EmptyState
-            message="You haven't submitted any service requests yet."
-            icon="bi-inbox"
-            action={
-              <button
-                type="button"
-                className="btn btn-danger"
+                className="btn btn-sm btn-outline-danger"
                 onClick={() => navigate('/student/service-request')}
               >
-                <FaPlus className="me-2" />
-                Create Your First Request
+                View Requests
+                <FaArrowRight className="ms-2" />
               </button>
             }
-          />
-        )}
-      </Card>
+          >
+            {(Array.isArray(stats.recentActivity) ? stats.recentActivity : []).length > 0 ? (
+              <DataTable
+                columns={recentActivityColumns}
+                data={
+                  Array.isArray(stats.recentActivity)
+                    ? stats.recentActivity
+                    : []
+                }
+                keyField="id"
+              />
+            ) : (
+              <EmptyState
+                message="You haven't submitted any service requests yet."
+                icon="bi-inbox"
+                action={
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => navigate('/student/service-request')}
+                  >
+                    <FaPlus className="me-2" />
+                    Create Your First Request
+                  </button>
+                }
+              />
+            )}
+          </Card>
+        </div>
+
+        {/* Next Appointment Highlight */}
+        <div className="col-12 col-lg-5 col-xl-4">
+          <Card title="Next Appointment" className="h-100">
+            {nextAppointment ? (
+              <div className="d-flex flex-column gap-3 h-100">
+                <div className="d-flex align-items-start gap-3">
+                  <div className="rounded-3 bg-danger-subtle text-danger p-3">
+                    <FaCalendarAlt size={24} />
+                  </div>
+
+                  <div>
+                    <h5 className="fw-bold mb-1">
+                      {nextAppointment.type || 'Counseling Appointment'}
+                    </h5>
+
+                    <p className="text-muted mb-1">
+                      <FaCalendarAlt className="me-2" />
+                      {formatDate(nextAppointment.date)}
+                    </p>
+
+                    {nextAppointment.time && (
+                      <p className="text-muted mb-1">
+                        <FaClock className="me-2" />
+                        {nextAppointment.time}
+                      </p>
+                    )}
+
+                    {nextAppointment.counselor && (
+                      <p className="text-muted small mb-2">
+                        Counselor: {nextAppointment.counselor}
+                      </p>
+                    )}
+
+                    <StatusBadge status={nextAppointment.status} />
+                  </div>
+                </div>
+
+                <div className="mt-auto pt-3">
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger w-100"
+                    onClick={() => navigate('/student/appointments')}
+                  >
+                    View Appointments
+                    <FaArrowRight className="ms-2" />
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <EmptyState
+                message="You don't have any upcoming appointments."
+                icon="bi-calendar-x"
+                action={
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger"
+                    onClick={() => navigate('/student/appointments')}
+                  >
+                    View Appointments
+                  </button>
+                }
+              />
+            )}
+          </Card>
+        </div>
+      </div>
     </div>
   );
 };

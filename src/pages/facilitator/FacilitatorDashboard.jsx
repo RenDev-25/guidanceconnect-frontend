@@ -1,11 +1,21 @@
-
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import {
+  FaClipboardList,
+  FaFolderOpen,
+  FaCalendarDay,
+  FaUsers,
+  FaTasks,
+  FaArrowRight,
+  FaExclamationTriangle,
+  FaHistory,
+} from 'react-icons/fa';
 
 import StatCard from '../../components/common/StatCard';
 import LoadingState from '../../components/common/LoadingState';
 import StatusBadge from '../../components/common/StatusBadge';
 import Card from '../../components/common/Card';
+import DataTable from '../../components/common/DataTable';
 import EmptyState from '../../components/common/EmptyState';
 import DashboardGrid from '../../components/dashboard/DashboardGrid';
 
@@ -26,7 +36,7 @@ const ACTIVE_REQUEST_STATUSES = [
 ];
 
 const getRequestDate = (request) =>
-  request.dateSubmitted || request.createdAt || '';
+  request?.dateSubmitted || request?.createdAt || '';
 
 const sortRequestsByPriority = (requests) => {
   return [...requests].sort((a, b) => {
@@ -44,7 +54,9 @@ const sortRequestsByPriority = (requests) => {
 const formatDate = (dateValue) => {
   if (!dateValue) return '—';
 
-  const date = new Date(dateValue);
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(String(dateValue))
+    ? new Date(`${dateValue}T12:00:00`)
+    : new Date(dateValue);
 
   if (Number.isNaN(date.getTime())) {
     return dateValue;
@@ -57,40 +69,35 @@ const formatDate = (dateValue) => {
   });
 };
 
-const QuickLink = ({ to, title, description }) => (
+const QuickLinkItem = ({ to, title, description, icon: Icon }) => (
   <Link
     to={to}
-    className="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3"
+    className="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-3 border-0 border-bottom"
   >
-    <div>
-      <div className="fw-semibold text-dark">{title}</div>
-      <small className="text-muted">{description}</small>
+    <div className="d-flex align-items-center gap-3">
+      {Icon && (
+        <div className="p-2 rounded bg-light text-primary d-flex align-items-center justify-content-center">
+          <Icon size={16} />
+        </div>
+      )}
+      <div>
+        <div className="fw-semibold text-dark mb-0">{title}</div>
+        <small className="text-muted">{description}</small>
+      </div>
     </div>
-
-    <span className="text-primary fw-semibold" aria-hidden="true">
-      →
-    </span>
+    <FaArrowRight className="text-muted small" />
   </Link>
 );
 
 const FacilitatorDashboard = () => {
+  const navigate = useNavigate();
   const { stats, loading } = useDashboardStats('facilitator');
-
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
     const allRequests = requestService.getAll() || [];
-
     setRequests(allRequests);
   }, []);
-
-  const recentRequests = useMemo(() => {
-    return [...requests]
-      .sort((a, b) =>
-        getRequestDate(b).localeCompare(getRequestDate(a))
-      )
-      .slice(0, 5);
-  }, [requests]);
 
   const priorityRequests = useMemo(() => {
     const activeRequests = requests.filter((request) =>
@@ -98,6 +105,14 @@ const FacilitatorDashboard = () => {
     );
 
     return sortRequestsByPriority(activeRequests).slice(0, 5);
+  }, [requests]);
+
+  const recentRequests = useMemo(() => {
+    return [...requests]
+      .sort((a, b) =>
+        getRequestDate(b).localeCompare(getRequestDate(a))
+      )
+      .slice(0, 5);
   }, [requests]);
 
   if (loading || !stats) {
@@ -108,35 +123,109 @@ const FacilitatorDashboard = () => {
     );
   }
 
+  // Priority Queue Table Columns
+  const priorityQueueColumns = [
+    {
+      key: 'id',
+      label: 'Request ID',
+      renderCell: (row) => <span className="fw-semibold">{row.id}</span>,
+    },
+    {
+      key: 'student',
+      label: 'Student',
+      renderCell: (row) =>
+        row.studentName || row.studentId || 'Unknown Student',
+    },
+    {
+      key: 'serviceType',
+      label: 'Service',
+      renderCell: (row) => row.serviceType || row.type || 'Service Request',
+    },
+    {
+      key: 'priority',
+      label: 'Priority',
+      renderCell: (row) => (
+        <span
+          className={`badge ${
+            row.priority === 'Urgent'
+              ? 'bg-danger'
+              : row.priority === 'High'
+                ? 'bg-warning text-dark'
+                : 'bg-secondary'
+          }`}
+        >
+          {row.priority || 'Normal'}
+        </span>
+      ),
+    },
+    {
+      key: 'status',
+      label: 'Status',
+      renderCell: (row) => <StatusBadge status={row.status} />,
+    },
+  ];
+
+  // Recent Requests Table Columns
+  const recentRequestsColumns = [
+    {
+      key: 'id',
+      label: 'Request ID',
+      renderCell: (row) => <span className="fw-semibold">{row.id}</span>,
+    },
+    {
+      key: 'student',
+      label: 'Student',
+      renderCell: (row) =>
+        row.studentName || row.studentId || 'Unknown Student',
+    },
+    {
+      key: 'serviceType',
+      label: 'Service Type',
+      renderCell: (row) => row.serviceType || row.type || 'Service Request',
+    },
+    {
+      key: 'dateSubmitted',
+      label: 'Date Submitted',
+      renderCell: (row) => formatDate(getRequestDate(row)),
+    },
+    {
+      key: 'status',
+      label: 'Status',
+      renderCell: (row) => <StatusBadge status={row.status} />,
+    },
+  ];
+
   return (
     <div className="container-fluid py-4">
-      {/* Dashboard heading */}
+      {/* Header and Quick Action */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
-          <h1 className="h3 fw-bold text-dark mb-1">
-            Facilitator Dashboard
-          </h1>
-
+          <p className="text-danger fw-semibold small text-uppercase mb-1">
+            Facilitator Portal
+          </p>
+          <h2 className="fw-bold mb-1">Facilitator Dashboard</h2>
           <p className="text-muted mb-0">
-            Monitor service requests, document verification,
-            appointments, and the walk-in queue.
+            Monitor service requests, document verifications, appointments, and walk-in queues.
           </p>
         </div>
 
-        <Link
-          to="/facilitator/requests"
-          className="btn btn-primary"
+        <button
+          type="button"
+          className="btn btn-danger d-inline-flex align-items-center justify-content-center gap-2"
+          onClick={() => navigate('/facilitator/requests')}
         >
-          View Request Queue
-        </Link>
+          <FaClipboardList aria-hidden="true" />
+          Open Request Queue
+        </button>
       </div>
 
-      {/* Summary cards */}
+      {/* Summary Stat Cards */}
       <DashboardGrid>
         <StatCard
           title="Pending Requests"
           value={stats.pendingRequests ?? 0}
-          subtitle="Requests awaiting review"
+          subtitle="Requests awaiting initial review"
+          icon={<FaClipboardList size={20} />}
           borderTheme="primary"
         />
 
@@ -144,13 +233,15 @@ const FacilitatorDashboard = () => {
           title="Documents for Verification"
           value={stats.documentsForVerification ?? 0}
           subtitle="Documents awaiting checking"
+          icon={<FaFolderOpen size={20} />}
           borderTheme="warning"
         />
 
         <StatCard
           title="Today's Appointments"
-          value={stats.todayAppointments ?? 0}
+          value={stats.todaysAppointments ?? stats.todayAppointments ?? 0}
           subtitle="Appointments scheduled today"
+          icon={<FaCalendarDay size={20} />}
           borderTheme="info"
         />
 
@@ -158,189 +249,121 @@ const FacilitatorDashboard = () => {
           title="Walk-In Queue"
           value={stats.walkInQueueCount ?? stats.walkInsWaiting ?? 0}
           subtitle="Students waiting to be assisted"
+          icon={<FaUsers size={20} />}
           borderTheme="danger"
         />
 
         <StatCard
           title="Tasks Remaining"
           value={stats.tasksRemaining ?? 0}
-          subtitle="Requests being processed"
+          subtitle="Active tasks in progress"
+          icon={<FaTasks size={20} />}
           borderTheme="success"
         />
       </DashboardGrid>
 
-      {/* Priority queue and quick links */}
+      {/* Secondary Content: Priority Queue & Quick Links */}
       <div className="row g-4 mb-4">
-        <div className="col-12 col-xl-8">
+        {/* Priority Queue Preview (Top 5) */}
+        <div className="col-12 col-lg-7 col-xl-8">
           <Card
             title="Priority Queue Preview"
+            className="h-100"
             headerActions={
-              <Link
-                to="/facilitator/requests"
-                className="btn btn-sm btn-outline-primary"
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-danger"
+                onClick={() => navigate('/facilitator/requests')}
               >
                 Open Queue
-              </Link>
+                <FaArrowRight className="ms-2" />
+              </button>
             }
           >
             <p className="text-muted small mb-3">
-              Active requests ordered by priority, with urgent
-              requests displayed first.
+              <FaExclamationTriangle className="text-warning me-1" />
+              Active requests sorted by priority (Urgent first), then submission date.
             </p>
 
             {priorityRequests.length === 0 ? (
-              <EmptyState message="There are no active requests in the priority queue." />
+              <EmptyState
+                message="There are no active requests in the priority queue."
+                icon="bi-check-circle"
+              />
             ) : (
-              <div className="table-responsive">
-                <table className="table table-hover align-middle mb-0">
-                  <thead className="table-light">
-                    <tr>
-                      <th scope="col">Request ID</th>
-                      <th scope="col">Student</th>
-                      <th scope="col">Service</th>
-                      <th scope="col">Priority</th>
-                      <th scope="col">Status</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {priorityRequests.map((request) => (
-                      <tr key={request.id}>
-                        <td className="fw-semibold">
-                          {request.id}
-                        </td>
-
-                        <td>
-                          {request.studentName ||
-                            request.studentId ||
-                            'Unknown student'}
-                        </td>
-
-                        <td>
-                          {request.serviceType ||
-                            request.type ||
-                            'Service request'}
-                        </td>
-
-                        <td>
-                          <span
-                            className={`badge ${
-                              request.priority === 'Urgent'
-                                ? 'bg-danger'
-                                : request.priority === 'High'
-                                  ? 'bg-warning text-dark'
-                                  : 'bg-secondary'
-                            }`}
-                          >
-                            {request.priority || 'Normal'}
-                          </span>
-                        </td>
-
-                        <td>
-                          <StatusBadge status={request.status} />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <DataTable
+                columns={priorityQueueColumns}
+                data={priorityRequests}
+                keyField="id"
+              />
             )}
           </Card>
         </div>
 
-        <div className="col-12 col-xl-4">
-          <Card title="Quick Links">
-            <div className="list-group list-group-flush">
-              <QuickLink
+        {/* Quick Links */}
+        <div className="col-12 col-lg-5 col-xl-4">
+          <Card title="Quick Links" className="h-100">
+            <div className="list-group list-group-flush border rounded-3 overflow-hidden">
+              <QuickLinkItem
                 to="/facilitator/requests"
                 title="Service Requests"
                 description="Review and process requests"
+                icon={FaClipboardList}
               />
-
-              <QuickLink
+              <QuickLinkItem
                 to="/facilitator/verification"
                 title="Document Verification"
                 description="Check submitted documents"
+                icon={FaFolderOpen}
               />
-
-              <QuickLink
+              <QuickLinkItem
                 to="/facilitator/appointments"
                 title="Appointment Management"
                 description="View and manage appointments"
+                icon={FaCalendarDay}
               />
-
-              <QuickLink
+              <QuickLinkItem
                 to="/facilitator/walk-ins"
                 title="Walk-In Queue"
                 description="Monitor waiting students"
+                icon={FaUsers}
               />
-
-              <QuickLink
+              <QuickLinkItem
                 to="/facilitator/students"
                 title="Student Records"
                 description="View student information"
+                icon={FaTasks}
               />
             </div>
           </Card>
         </div>
       </div>
 
-      {/* Recent service requests */}
+      {/* Recent Service Requests Section */}
       <Card
         title="Recent Service Requests"
         headerActions={
-          <Link
-            to="/facilitator/requests"
-            className="btn btn-sm btn-outline-primary"
+          <button
+            type="button"
+            className="btn btn-sm btn-outline-danger"
+            onClick={() => navigate('/facilitator/requests')}
           >
             View All
-          </Link>
+            <FaArrowRight className="ms-2" />
+          </button>
         }
       >
         {recentRequests.length === 0 ? (
-          <EmptyState message="No service requests have been submitted yet." />
+          <EmptyState
+            message="No service requests have been submitted yet."
+            icon="bi-inbox"
+          />
         ) : (
-          <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0">
-              <thead className="table-light">
-                <tr>
-                  <th scope="col">Request ID</th>
-                  <th scope="col">Student</th>
-                  <th scope="col">Service Type</th>
-                  <th scope="col">Date Submitted</th>
-                  <th scope="col">Status</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {recentRequests.map((request) => (
-                  <tr key={request.id}>
-                    <td className="fw-semibold">
-                      {request.id}
-                    </td>
-
-                    <td>
-                      {request.studentName ||
-                        request.studentId ||
-                        'Unknown student'}
-                    </td>
-
-                    <td>
-                      {request.serviceType ||
-                        request.type ||
-                        'Service request'}
-                    </td>
-
-                    <td>{formatDate(getRequestDate(request))}</td>
-
-                    <td>
-                      <StatusBadge status={request.status} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <DataTable
+            columns={recentRequestsColumns}
+            data={recentRequests}
+            keyField="id"
+          />
         )}
       </Card>
     </div>
