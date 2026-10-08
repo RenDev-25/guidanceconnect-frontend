@@ -24,7 +24,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   
-  // Use 'admin' role to fetch system-wide statistics
+
   const { stats, loading } = useDashboardStats('admin');
 
   if (loading || !stats) {
@@ -130,7 +130,7 @@ const AdminDashboard = () => {
             }
           >
             {/* 
-              NOTE: Replace this placeholder div with your actual Chart.js or Recharts component later.
+              NOTE: Replace this placeholder div with your actual Chart.js or Recharts compo nent later.
               Example: <LineChart data={chartData} ... />
             */}
             <div 
