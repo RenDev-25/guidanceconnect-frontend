@@ -1,3 +1,4 @@
+
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Layouts
@@ -14,9 +15,7 @@ import Login from './pages/auth/Login';
 import Unauthorized from './pages/auth/Unauthorized';
 import StyleGuide from './pages/dev/StyleGuide';
 
-// ========================================
-// STUDENT PAGES
-// ========================================
+// Student Pages
 import StudentDashboard from './pages/student/StudentDashboard';
 import ServiceRequest from './pages/student/ServiceRequest';
 import CounselingRequest from './pages/student/CounselingRequest';
@@ -31,8 +30,7 @@ import Announcements from './pages/student/Announcements';
 import Profile from './pages/student/Profile';
 import AIAssistant from './pages/student/AIAssistant';
 
-
-// FACILITATOR PAGES
+// Facilitator Pages
 import FacilitatorDashboard from './pages/facilitator/FacilitatorDashboard';
 import RequestQueue from './pages/facilitator/RequestQueue';
 import DocumentVerification from './pages/facilitator/DocumentVerification';
@@ -42,10 +40,7 @@ import CounselingRecords from './pages/facilitator/CounselingRecords';
 import FacilitatorStudentRecords from './pages/facilitator/StudentRecords';
 import FacilitatorNotifications from './pages/facilitator/Notifications';
 
-
-// ========================================
-// ADMIN / COUNSELOR PAGES
-// ========================================
+// Admin / Counselor Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
 import RequestManagement from './pages/admin/RequestManagement';
 import GoodMoralManagement from './pages/admin/GoodMoralManagement';
@@ -61,51 +56,42 @@ import UserManagement from './pages/admin/UserManagement';
 import AuditLog from './pages/admin/AuditLog';
 import SystemSettings from './pages/admin/SystemSettings';
 
+// Stage 16 - Phase 4
+import AIInsights from './pages/admin/AIInsights';
 
-// ========================================
-// PLACEHOLDER COMPONENT
-// ========================================
+// Placeholder for pages not implemented yet
 function Placeholder({ title }) {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid py-4">
       <div className="mb-4">
         <h2>{title}</h2>
         <p className="text-muted">
-          This is a placeholder page for the Guidance and Counseling System.
+          This page is not implemented yet.
         </p>
       </div>
     </div>
   );
 }
 
-
-// ========================================
-// APP ROUTES
-// ========================================
 function App() {
   return (
     <Routes>
-
-      {/* ========================================
-          PUBLIC ROUTES
-      ======================================== */}
+      {/* Public Routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
       <Route path="/dev/style-guide" element={<StyleGuide />} />
 
-
-      {/* ========================================
-          PROTECTED ROUTES
-      ======================================== */}
+      {/* Protected Routes */}
       <Route element={<ProtectedRoute />}>
 
-
-        {/* ========================================
-            STUDENT
-        ======================================== */}
+        {/* Student */}
         <Route element={<RoleRoute allowedRoles={['student']} />}>
           <Route path="/student" element={<StudentLayout />}>
-            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route
+              index
+              element={<Navigate to="dashboard" replace />}
+            />
+
             <Route path="dashboard" element={<StudentDashboard />} />
             <Route path="service-request" element={<ServiceRequest />} />
             <Route path="counseling-request" element={<CounselingRequest />} />
@@ -122,62 +108,41 @@ function App() {
           </Route>
         </Route>
 
+        {/* Facilitator */}
+        <Route element={<RoleRoute allowedRoles={['facilitator']} />}>
+          <Route path="/facilitator" element={<FacilitatorLayout />}>
+            <Route
+              index
+              element={<Navigate to="dashboard" replace />}
+            />
 
-                        
-          {/* FACILITATOR */}
-          <Route element={<RoleRoute allowedRoles={['facilitator']} />}>
-            <Route path="/facilitator" element={<FacilitatorLayout />}>
-              <Route index element={<Navigate to="dashboard" replace />} />
-
-              <Route
-                path="dashboard"
-                element={<Placeholder title="Facilitator Dashboard" />}
-              />
-
-              <Route
-                path="requests"
-                element={<Placeholder title="Requests" />}
-              />
-
-              <Route
-                path="document-verification"
-                element={<DocumentVerification />}
-              />
-
-              <Route
-                path="appointments"
-                element={<Placeholder title="Appointments" />}
-              />
-
-              <Route
-                path="walk-in-queue"
-                element={<WalkInQueue />}
-              />
-
-              <Route
-                path="counseling"
-                element={<Placeholder title="Counseling Records" />}
-              />
-
-              <Route
-                path="students"
-                element={<Placeholder title="Student Records" />}
-              />
-
-              <Route
-                path="notifications"
-                element={<FacilitatorNotifications />}
-              />
-            </Route>
+            <Route path="dashboard" element={<FacilitatorDashboard />} />
+            <Route path="requests" element={<RequestQueue />} />
+            <Route
+              path="document-verification"
+              element={<DocumentVerification />}
+            />
+            <Route
+              path="appointments"
+              element={<FacilitatorAppointmentManagement />}
+            />
+            <Route path="walk-in-queue" element={<WalkInQueue />} />
+            <Route path="counseling" element={<CounselingRecords />} />
+            <Route path="students" element={<FacilitatorStudentRecords />} />
+            <Route
+              path="notifications"
+              element={<FacilitatorNotifications />}
+            />
           </Route>
+        </Route>
 
-
-        {/* ========================================
-            COUNSELOR / ADMIN
-        ======================================== */}
+        {/* Counselor / Admin */}
         <Route element={<RoleRoute allowedRoles={['counselor']} />}>
           <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route
+              index
+              element={<Navigate to="dashboard" replace />}
+            />
 
             {/* Core Operations */}
             <Route path="dashboard" element={<AdminDashboard />} />
@@ -190,17 +155,26 @@ function App() {
             <Route path="referrals" element={<ReferralManagement />} />
             <Route path="follow-ups" element={<FollowUpManagement />} />
             <Route path="career-services" element={<CareerServices />} />
-            <Route path="students" element={<Placeholder title="Student Records" />} />
+            <Route
+              path="students"
+              element={<Placeholder title="Student Records" />}
+            />
 
             {/* Programs & Communication */}
             <Route path="programs" element={<ProgramsAndActivities />} />
             <Route path="announcements" element={<AdminAnnouncements />} />
             <Route path="notifications" element={<AdminNotifications />} />
 
-            {/* Analytics / Intelligence */}
-            <Route path="analytics" element={<Placeholder title="Reports & Analytics" />} />
-            <Route path="prescriptive" element={<Placeholder title="Prescriptive Insights" />} />
-            <Route path="ai-insights" element={<Placeholder title="AI Insights" />} />
+            {/* Analytics & Intelligence */}
+            <Route
+              path="analytics"
+              element={<Placeholder title="Reports & Analytics" />}
+            />
+            <Route
+              path="prescriptive"
+              element={<Placeholder title="Prescriptive Insights" />}
+            />
+            <Route path="ai-insights" element={<AIInsights />} />
 
             {/* Administration */}
             <Route path="users" element={<UserManagement />} />
@@ -208,16 +182,17 @@ function App() {
             <Route path="settings" element={<SystemSettings />} />
           </Route>
         </Route>
-
       </Route>
 
-
-      {/* ========================================
-          DEFAULT ROUTES
-      ======================================== */}
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="*" element={<Navigate to="/login" replace />} />
-
+      {/* Default Routes */}
+      <Route
+        path="/"
+        element={<Navigate to="/login" replace />}
+      />
+      <Route
+        path="*"
+        element={<Navigate to="/login" replace />}
+      />
     </Routes>
   );
 }

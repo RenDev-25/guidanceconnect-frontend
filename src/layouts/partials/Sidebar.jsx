@@ -29,16 +29,17 @@ function Sidebar({ navItems, isOpen, onClose }) {
   return (
     <>
       {isOpen && (
-        <div
-          className="sidebar-overlay d-md-none"
+        <button
+          type="button"
+          className="sidebar-overlay d-lg-none"
           onClick={onClose}
+          aria-label="Close navigation menu"
         />
       )}
 
       <aside
-        className={`sidebar ${
-          isOpen ? "sidebar-open" : ""
-        }`}
+        id="app-sidebar"
+        className={`sidebar ${isOpen ? "sidebar-open" : ""}`}
       >
         <div className="sidebar-header">
             <div className="sidebar-brand">
@@ -57,7 +58,7 @@ function Sidebar({ navItems, isOpen, onClose }) {
 
             <button
                 type="button"
-                className="sidebar-close d-md-none"
+                className="sidebar-close d-lg-none"
                 onClick={onClose}
                 aria-label="Close navigation"
             >

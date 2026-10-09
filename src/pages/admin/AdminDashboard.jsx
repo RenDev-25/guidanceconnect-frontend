@@ -34,9 +34,9 @@ const AdminDashboard = () => {
   const adminName = user?.name?.trim().split(/\s+/)[0] || 'Administrator';
 
   return (
-    <div className="container-fluid py-4">
+    <div className="container-fluid py-4 dashboard-page">
       {/* Page Heading and Quick Action */}
-      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+      <div className="dashboard-page-header d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
           <p className="text-primary fw-semibold small text-uppercase mb-1">
             OGC Command Center
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
 
         <button
           type="button"
-          className="btn btn-primary d-inline-flex align-items-center justify-content-center gap-2 shadow-sm"
+          className="btn btn-primary dashboard-primary-action d-inline-flex align-items-center justify-content-center gap-2 shadow-sm"
           onClick={() => navigate('/admin/analytics')}
         >
           <FaChartLine aria-hidden="true" />

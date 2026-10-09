@@ -18,7 +18,7 @@ export const aiService = {
    * Uses simple keyword matching to simulate AI comprehension.
    * @param {string} question - The user's input
    * @returns {Promise<string>} - The canned response
-   */
+   */   
   askAssistant: async (question) => {
     const lowerQuestion = question.toLowerCase();
     

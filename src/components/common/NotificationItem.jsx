@@ -1,37 +1,71 @@
+
 import React from 'react';
 
 /**
- * Individual row for a notification list/dropdown
+ * Individual notification item.
+ *
  * @param {Object} props
- * @param {Object} props.notification - { id, title, message, type, isRead, createdAt }
- * @param {function} props.onMarkRead
+ * @param {Object} props.notification
+ * @param {Function} props.onMarkRead
  */
 const NotificationItem = ({ notification, onMarkRead }) => {
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onMarkRead(notification.id);
+    }
+  };
+
   return (
-    <div 
-      className={`p-3 border-bottom d-flex align-items-start ${notification.isRead ? 'bg-white' : 'bg-light'}`}
-      style={{ cursor: 'pointer' }}     
+    <div
+      className={`notification-item ${
+        notification.isRead
+          ? 'notification-item-read'
+          : 'notification-item-unread'
+      }`}
+      role="button"
+      tabIndex={0}
+      aria-label={`${notification.title}. ${
+        notification.isRead ? 'Already read' : 'Unread. Mark as read'
+      }`}
       onClick={() => onMarkRead(notification.id)}
+      onKeyDown={handleKeyDown}
     >
-      <div className={`text-${notification.isRead ? 'muted' : 'primary'} mt-1 me-3`}>
-        <i className={`bi ${notification.isRead ? 'bi-envelope-open' : 'bi-envelope-fill'} fs-5`}></i>
+      <div className="notification-item-icon" aria-hidden="true">
+        <i
+          className={`bi ${
+            notification.isRead
+              ? 'bi-envelope-open'
+              : 'bi-envelope-fill'
+          }`}
+        />
       </div>
-      <div className="flex-grow-1">
-        <h6 className={`mb-1 ${notification.isRead ? 'text-muted' : 'fw-bold'}`}>
+
+      <div className="notification-item-content">
+        <h6
+          className={`notification-item-title ${
+            notification.isRead ? 'text-muted' : 'fw-bold'
+          }`}
+        >
           {notification.title}
         </h6>
-        <p className="mb-1 text-secondary small">{notification.message}</p>
-        <small className="text-muted" style={{ fontSize: '0.75rem' }}>
+
+        <p className="notification-item-message">
+          {notification.message}
+        </p>
+
+        <small className="notification-item-date">
           {new Date(notification.createdAt).toLocaleString()}
         </small>
       </div>
+
       {!notification.isRead && (
-        <span className="badge bg-primary rounded-circle p-1 ms-2">
-          <span className="visually-hidden">New alert</span>
+        <span className="notification-unread-indicator">
+          <span className="visually-hidden">Unread notification</span>
         </span>
       )}
     </div>
   );
 };
 
-export default NotificationItem;  
+export default NotificationItem;

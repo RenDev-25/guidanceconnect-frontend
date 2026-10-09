@@ -152,17 +152,6 @@
 }
 
 /* ================================
-   MOBILE MENU
-================================ */
-
-.mobile-menu-button {
-  border: none;
-  background: transparent;
-  font-size: 20px;
-  padding: 8px;
-}
-
-/* ================================
    NOTIFICATIONS
 ================================ */
 
@@ -331,35 +320,78 @@
 }
 
 /* ================================
-   MOBILE SIDEBAR
+   RESPONSIVE SIDEBAR / NAVIGATION
 ================================ */
 
 .sidebar-overlay {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
   background: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
   z-index: 1040;
 }
 
 .sidebar-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
   border: none;
+  border-radius: 6px;
   background: transparent;
   color: #ffffff;
   font-size: 18px;
+  cursor: pointer;
 }
 
-/* ================================
-   RESPONSIVE
-================================ */
+.sidebar-close:hover,
+.sidebar-close:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+}
 
-@media (max-width: 767.98px) {
+.mobile-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mobile-menu-button:hover,
+.mobile-menu-button:focus-visible {
+  background: #f1f1f1;
+}
+
+.sidebar-link:focus-visible,
+.profile-button:focus-visible,
+.notification-button:focus-visible {
+  outline: 2px solid var(--color-primary, #c8102e);
+  outline-offset: 2px;
+}
+
+/* Keep the sidebar and menu controls on the same lg breakpoint.
+   Tablets and smaller screens use an off-canvas sidebar. */
+@media (max-width: 991.98px) {
   .sidebar {
+    width: min(260px, 85vw);
     transform: translateX(-100%);
-    transition: transform 0.25s ease;
+    transition: transform 0.25s ease, visibility 0s linear 0.25s;
+    visibility: hidden;
   }
 
   .sidebar.sidebar-open {
     transform: translateX(0);
+    visibility: visible;
+    transition-delay: 0s;
   }
 
   .main-wrapper {
@@ -377,5 +409,389 @@
 
   .page-content {
     padding: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transition: none;
+  }
+}
+
+/* ================================
+   STAGE 18.3: RESPONSIVE DASHBOARD CARDS
+================================ */
+
+.dashboard-page,
+.dashboard-page .row > [class*="col-"],
+.dashboard-stat-column,
+.dashboard-stat-content {
+  min-width: 0;
+}
+
+.dashboard-stat-card .card-body {
+  padding: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+.dashboard-stat-content {
+  flex: 1 1 auto;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-stat-card p {
+  overflow-wrap: anywhere;
+}
+
+.dashboard-stat-value {
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-stat-icon {
+  flex: 0 0 auto;
+  line-height: 1.2;
+}
+
+.dashboard-page-header > div:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-page-header h2 {
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  overflow-wrap: anywhere;
+}
+
+.dashboard-page .card-header {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.dashboard-page .card-header h5 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-page .card-header > div {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 575.98px) {
+  .dashboard-page {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .dashboard-stat-grid {
+    --bs-gutter-x: 0.875rem;
+    --bs-gutter-y: 0.875rem;
+  }
+
+  .dashboard-primary-action {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .dashboard-page .card-header {
+    padding-top: 1rem;
+  }
+
+  .dashboard-page .card-header > div {
+    width: 100%;
+  }
+}
+
+
+/* ========================================
+   STAGE 18.4 — RESPONSIVE DATA TABLES
+======================================== */
+
+.data-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+}
+
+.data-table-wrapper:focus-visible {
+  outline: 2px solid #c8102e;
+  outline-offset: 2px;
+}
+
+.data-table {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.data-table th,
+.data-table td {
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.data-table th {
+  white-space: normal;
+  min-width: 100px;
+}
+
+.data-table td {
+  min-width: 100px;
+}
+
+.data-table-sortable {
+  padding: 0 !important;
+}
+
+.data-table-sort-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.data-table-sort-button:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.data-table-sort-button:focus-visible {
+  outline: 2px solid #c8102e;
+  outline-offset: -2px;
+}
+
+.data-table-sort-icon {
+  flex-shrink: 0;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+@media (max-width: 767.98px) {
+  .data-table {
+    font-size: 0.875rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 10px;
+  }
+
+  .data-table th {
+    min-width: 110px;
+  }
+
+  .data-table td {
+    min-width: 110px;
+  }
+
+  .data-table-sort-button {
+    min-height: 44px;
+    padding: 10px;
+  }
+}
+
+
+/* ========================================
+   STAGE 18.4 — RESPONSIVE REQUESTS,
+   APPOINTMENTS, AND NOTIFICATIONS
+======================================== */
+
+.responsive-list-page {
+  min-width: 0;
+}
+
+.responsive-page-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.responsive-page-heading > div {
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.responsive-page-heading h3 {
+  overflow-wrap: anywhere;
+}
+
+.responsive-page-heading p {
+  line-height: 1.5;
+}
+
+.responsive-list-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.responsive-list-card .card-body {
+  min-width: 0;
+}
+
+/* Status filter buttons */
+.responsive-filter-bar {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.responsive-filter-bar > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.responsive-filter-bar .btn {
+  min-height: 40px;
+  white-space: normal;
+}
+
+/* Table action buttons */
+.responsive-row-action {
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+/* Notification list */
+.notification-list {
+  min-width: 0;
+  border-radius: 8px;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 16px;
+  border-bottom: 1px solid #e9ecef;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.notification-item:last-child {
+  border-bottom: 0;
+}
+
+.notification-item-read {
+  background-color: #ffffff;
+}
+
+.notification-item-unread {
+  background-color: #f4f7ff;
+}
+
+.notification-item:hover {
+  background-color: #eef2f7;
+}
+
+.notification-item:focus-visible {
+  outline: 2px solid #c8102e;
+  outline-offset: -2px;
+}
+
+.notification-item-icon {
+  flex: 0 0 24px;
+  padding-top: 2px;
+  font-size: 20px;
+  color: #6c757d;
+}
+
+.notification-item-unread .notification-item-icon {
+  color: #0d6efd;
+}
+
+.notification-item-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.notification-item-title {
+  margin-bottom: 6px;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}
+
+.notification-item-message {
+  margin-bottom: 8px;
+  color: #6c757d;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.notification-item-date {
+  display: block;
+  color: #6c757d;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.notification-unread-indicator {
+  flex: 0 0 9px;
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+}
+
+.mark-all-read-button {
+  min-height: 40px;
+  white-space: normal;
+}
+
+@media (max-width: 575.98px) {
+  .responsive-page-heading {
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .responsive-page-heading > div {
+    flex-basis: 100%;
+  }
+
+  .notifications-heading .mark-all-read-button {
+    width: 100%;
+  }
+
+  .responsive-list-card .card-body {
+    padding: 12px;
+  }
+
+  .responsive-filter-bar .btn {
+    flex: 0 0 auto;
+    max-width: 100%;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .notification-item {
+    gap: 10px;
+    padding: 14px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notification-item {
+    transition: none;
   }
 }

@@ -117,7 +117,7 @@ const FacilitatorDashboard = () => {
 
   if (loading || !stats) {
     return (
-      <div className="container-fluid py-4">
+      <div className="container-fluid py-4 dashboard-page">
         <LoadingState message="Loading facilitator dashboard..." />
       </div>
     );
@@ -196,9 +196,9 @@ const FacilitatorDashboard = () => {
   ];
 
   return (
-    <div className="container-fluid py-4">
+    <div className="container-fluid py-4 dashboard-page">
       {/* Header and Quick Action */}
-      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+      <div className="dashboard-page-header d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
           <p className="text-danger fw-semibold small text-uppercase mb-1">
             Facilitator Portal
@@ -211,7 +211,7 @@ const FacilitatorDashboard = () => {
 
         <button
           type="button"
-          className="btn btn-danger d-inline-flex align-items-center justify-content-center gap-2"
+          className="btn btn-danger dashboard-primary-action d-inline-flex align-items-center justify-content-center gap-2"
           onClick={() => navigate('/facilitator/requests')}
         >
           <FaClipboardList aria-hidden="true" />

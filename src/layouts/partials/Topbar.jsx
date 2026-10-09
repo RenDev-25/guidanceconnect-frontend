@@ -7,15 +7,18 @@ import Breadcrumbs from "./Breadcrumbs";
 function Topbar({
   title = "Dashboard",
   onMenuClick,
+  sidebarOpen = false,
 }) {
   return (
     <header className="topbar">
       <div className="topbar-left">
         <button
           type="button"
-          className="mobile-menu-button d-md-none"
+          className="mobile-menu-button d-lg-none"
           onClick={onMenuClick}
-          aria-label="Open navigation"
+          aria-label="Open navigation menu"
+          aria-controls="app-sidebar"
+          aria-expanded={sidebarOpen}
         >
           <FaBars />
         </button>

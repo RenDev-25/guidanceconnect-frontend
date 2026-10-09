@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Card from '../../components/common/Card';
 import DataTable from '../../components/common/DataTable';
@@ -16,63 +17,92 @@ const AppointmentPage = () => {
   const [selectedAppt, setSelectedAppt] = useState(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setAppointments(appointmentService.getByStudent(CURRENT_STUDENT_ID) || []);
+    const timer = setTimeout(() => {
+      setAppointments(
+        appointmentService.getByStudent(CURRENT_STUDENT_ID) || []
+      );
       setLoading(false);
     }, 400);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  const handleOpenCancel = (appt) => {
-    setSelectedAppt(appt);
+  const handleOpenCancel = (appointment) => {
+    setSelectedAppt(appointment);
     setCancelModalOpen(true);
+  };
+
+  const handleCloseCancel = () => {
+    setCancelModalOpen(false);
+    setSelectedAppt(null);
   };
 
   const handleConfirmCancel = () => {
     if (selectedAppt) {
       appointmentService.updateStatus(selectedAppt.id, 'Cancelled');
-      // Refresh list
-      setAppointments(appointmentService.getByStudent(CURRENT_STUDENT_ID) || []);
+
+      setAppointments(
+        appointmentService.getByStudent(CURRENT_STUDENT_ID) || []
+      );
     }
-    setCancelModalOpen(false);
-    setSelectedAppt(null);
+
+    handleCloseCancel();
   };
 
   const columns = [
-    { key: 'id', label: 'Appt ID', sortable: true },
+    { key: 'id', label: 'Appointment ID', sortable: true },
     { key: 'date', label: 'Date', sortable: true },
     { key: 'time', label: 'Time' },
     { key: 'type', label: 'Type' },
-    { key: 'status', label: 'Status', renderCell: (row) => <StatusBadge status={row.status} /> },
-    { 
-      key: 'actions', 
-      label: 'Actions', 
-      renderCell: (row) => (
+    {
+      key: 'status',
+      label: 'Status',
+      renderCell: (row) => <StatusBadge status={row.status} />,
+    },
+    {
+      key: 'actions',
+      label: 'Actions',
+      renderCell: (row) =>
         row.status === 'Scheduled' ? (
-          <Button variant="outline-danger" size="sm" onClick={() => handleOpenCancel(row)}>
+          <Button
+            variant="outline-danger"
+            size="sm"
+            className="responsive-row-action"
+            onClick={() => handleOpenCancel(row)}
+          >
             Cancel
           </Button>
         ) : (
           <span className="text-muted small">No actions</span>
-        )
-      ) 
-    }
+        ),
+    },
   ];
 
   return (
-    <div className="container-fluid py-4">
-      <h3 className="fw-bold mb-4">My Appointments</h3>
-      
-      <Card>
+    <div className="container-fluid py-3 py-md-4 responsive-list-page">
+      <div className="responsive-page-heading">
+        <div>
+          <h3 className="fw-bold mb-1">My Appointments</h3>
+          <p className="text-muted mb-0">
+            View your appointments and manage scheduled sessions.
+          </p>
+        </div>
+      </div>
+
+      <Card className="responsive-list-card">
         {loading ? (
           <LoadingState message="Loading appointments..." />
         ) : (
-          <DataTable columns={columns} data={appointments} />
+          <DataTable
+            columns={columns}
+            data={appointments}
+          />
         )}
       </Card>
 
-      <ConfirmDialog 
+      <ConfirmDialog
         isOpen={cancelModalOpen}
-        onClose={() => setCancelModalOpen(false)}
+        onClose={handleCloseCancel}
         onConfirm={handleConfirmCancel}
         title="Cancel Appointment"
         message={`Are you sure you want to cancel your appointment on ${selectedAppt?.date} at ${selectedAppt?.time}? This action cannot be undone.`}

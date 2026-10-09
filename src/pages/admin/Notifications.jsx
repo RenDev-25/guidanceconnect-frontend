@@ -1,104 +1,94 @@
+
 import React, { useState, useEffect } from 'react';
+import Card from '../../components/common/Card';
+import NotificationItem from '../../components/common/NotificationItem';
+import Button from '../../components/common/Button';
+import LoadingState from '../../components/common/LoadingState';
+import EmptyState from '../../components/common/EmptyState';
 import { notificationService } from '../../services/notificationService';
 
+const CURRENT_STUDENT_ID = 'STU-001';
+
 const Notifications = () => {
+  const [loading, setLoading] = useState(true);
   const [notifications, setNotifications] = useState([]);
-  const [filter, setFilter] = useState('All');
 
-  const fetchNotifications = () => {
-    const data = notificationService.getAdminNotifications() || [];
-    setNotifications(data);
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setNotifications(
+        notificationService.getByUser(CURRENT_STUDENT_ID) || []
+      );
+      setLoading(false);
+    }, 400);
 
-  useEffect(() => fetchNotifications(), []);
+    return () => clearTimeout(timer);
+  }, []);
 
-  const handleMarkAsRead = (id) => {
+  const handleMarkRead = (id) => {
     notificationService.markAsRead(id);
-    fetchNotifications();
+    setNotifications(
+      notificationService.getByUser(CURRENT_STUDENT_ID) || []
+    );
   };
 
   const handleMarkAllRead = () => {
-    notificationService.markAllAsRead('admin');
-    fetchNotifications();
+    notifications
+      .filter((notification) => !notification.isRead)
+      .forEach((notification) => {
+        notificationService.markAsRead(notification.id);
+      });
+
+    setNotifications(
+      notificationService.getByUser(CURRENT_STUDENT_ID) || []
+    );
   };
 
-  const filteredList = notifications.filter(n => {
-    if (filter === 'Unread') return !n.read;
-    if (filter === 'Read') return n.read;
-    return true;
-  });
-
-  const unreadCount = notifications.filter(n => !n.read).length;
+  const unreadCount = notifications.filter(
+    (notification) => !notification.isRead
+  ).length;
 
   return (
-    <div className="container-fluid py-4">
-      <div className="d-flex justify-content-between align-items-center mb-4">
+    <div className="container-fluid py-3 py-md-4 responsive-list-page">
+      <div className="responsive-page-heading notifications-heading">
         <div>
-          <h1 className="h3 fw-bold text-dark">Admin Notifications</h1>
-          <p className="text-muted small mb-0">System alerts, escalation notices, and pending action triggers.</p>
+          <h3 className="fw-bold mb-1">Notifications</h3>
+          <p className="text-muted mb-0">
+            Stay updated on your requests and appointments.
+          </p>
         </div>
-        {unreadCount > 0 && (
-          <button className="btn btn-outline-primary btn-sm" onClick={handleMarkAllRead}>
-            ✓ Mark All as Read
-          </button>
+
+        {!loading && unreadCount > 0 && (
+          <Button
+            variant="outline-primary"
+            size="sm"
+            className="mark-all-read-button"
+            onClick={handleMarkAllRead}
+          >
+            Mark All as Read ({unreadCount})
+          </Button>
         )}
       </div>
 
-      <div className="card shadow-sm border-0">
-        <div className="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-          <div className="btn-group btn-group-sm">
-            {['All', 'Unread', 'Read'].map(f => (
-              <button
-                key={f}
-                className={`btn ${filter === f ? 'btn-primary' : 'btn-outline-secondary'}`}
-                onClick={() => setFilter(f)}
-              >
-                {f} {f === 'Unread' && unreadCount > 0 && `(${unreadCount})`}
-              </button>
+      <Card className="responsive-list-card">
+        {loading ? (
+          <LoadingState message="Loading notifications..." />
+        ) : notifications.length === 0 ? (
+          <EmptyState
+            message="You have no notifications."
+            icon="bi-bell-slash"
+          />
+        ) : (
+          <div className="list-group list-group-flush notification-list">
+            {notifications.map((item) => (
+              <NotificationItem
+                key={item.id}
+                notification={item}
+                onMarkRead={handleMarkRead}
+              />
             ))}
           </div>
-          <span className="text-muted small">Total: {notifications.length}</span>
-        </div>
-        <div className="card-body p-0">
-          <div className="list-group list-group-flush">
-            {filteredList.map(item => (
-              <div 
-                key={item.id} 
-                className={`list-group-item p-3 border-0 border-bottom ${!item.read ? 'bg-light' : ''}`}
-              >
-                <div className="d-flex justify-content-between align-items-start">
-                  <div className="me-3">
-                    <div className="d-flex align-items-center mb-1">
-                      <span className={`badge ${item.type === 'Alert' ? 'bg-danger' : 'bg-primary'} me-2`}>
-                        {item.type || 'System'}
-                      </span>
-                      <h6 className={`mb-0 ${!item.read ? 'fw-bold text-dark' : 'text-secondary'}`}>
-                        {item.title}
-                      </h6>
-                    </div>
-                    <p className="text-muted small mb-1">{item.message}</p>
-                    <small className="text-muted" style={{ fontSize: '0.75rem' }}>{item.timestamp || item.date}</small>
-                  </div>
-                  {!item.read && (
-                    <button 
-                      className="btn btn-sm btn-link text-decoration-none p-0" 
-                      onClick={() => handleMarkAsRead(item.id)}
-                    >
-                      Mark Read
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
-
-            {filteredList.length === 0 && (
-              <div className="p-4 text-center text-muted">
-                No notifications found.
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+        )}
+      </Card>
     </div>
   );
 };

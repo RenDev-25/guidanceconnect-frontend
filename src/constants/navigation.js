@@ -1,3 +1,4 @@
+
 export const studentNav = [
   {
     label: "Dashboard",
@@ -24,7 +25,13 @@ export const studentNav = [
     path: "/student/good-moral-request",
     icon: "FaFileAlt",
   },
+  {
+    label: "AI Assistant",
+    path: "/student/ai-assistant",
+    icon: "FaComments",
+  },
 ];
+
 
 export const facilitatorNav = [
   { label: "Dashboard", path: "/facilitator/dashboard", icon: "FaHome" },
@@ -39,11 +46,17 @@ export const facilitatorNav = [
 
 // src/constants/navigation.js
 
+
 export const adminNav = [
   {
     label: "Dashboard",
     path: "/admin/dashboard",
     icon: "FaHome",
+  },
+  {
+    label: "AI Insights",
+    path: "/admin/ai-insights",
+    icon: "FaChartBar",
   },
   {
     label: "Appointments",
