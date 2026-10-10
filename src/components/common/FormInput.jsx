@@ -1,6 +1,7 @@
 
 /**
- * Standard Form Input with built-in error handling and labels
+ * Standard Form Input with built-in error handling and labels.
+ *
  * @param {Object} props
  * @param {string} props.label
  * @param {string} props.name
@@ -23,33 +24,55 @@ const FormInput = ({
   placeholder,
   ...props
 }) => {
+  const helpTextId = `${name}-help`;
+  const errorId = `${name}-error`;
+
   return (
     <div className="mb-3 text-start">
       {label && (
-        <label htmlFor={name} className="form-label fw-semibold">
+        <label
+          htmlFor={name}
+          className="form-label fw-semibold"
+        >
           {label}
         </label>
       )}
 
       <input
         type={type}
-        className={`form-control ${error ? 'is-invalid' : ''}`}
         id={name}
         name={name}
-        value={value}
+        value={value ?? ''}
         onChange={onChange}
         placeholder={placeholder}
+        className={`form-control ${error ? 'is-invalid' : ''}`}
+        aria-invalid={Boolean(error)}
+        aria-describedby={
+          [
+            helpText ? helpTextId : null,
+            error ? errorId : null,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
         {...props}
       />
 
       {helpText && (
-        <small className="form-text text-muted">
+        <div
+          id={helpTextId}
+          className="form-text text-muted"
+        >
           {helpText}
-        </small>
+        </div>
       )}
 
       {error && (
-        <div className="invalid-feedback">
+        <div
+          id={errorId}
+          className="invalid-feedback"
+          role="alert"
+        >
           {error}
         </div>
       )}
@@ -58,4 +81,3 @@ const FormInput = ({
 };
 
 export default FormInput;
-

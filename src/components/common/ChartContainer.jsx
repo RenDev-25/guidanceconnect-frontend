@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ResponsiveContainer } from 'recharts';
 import Card from './Card';
@@ -34,30 +35,56 @@ export const CHART_PALETTE = [
 // ==========================================
 // REUSABLE CUSTOM RECHARTS TOOLTIP
 // ==========================================
-export const CustomChartTooltip = ({ active, payload, label, formatter, valueSuffix = '' }) => {
+export const CustomChartTooltip = ({
+  active,
+  payload,
+  label,
+  formatter,
+  valueSuffix = '',
+}) => {
   if (!active || !payload || !payload.length) {
     return null;
   }
 
   return (
-    <div className="bg-white border rounded shadow-sm p-2 px-3 small" style={{ minWidth: '140px' }}>
-      {label && <div className="fw-bold text-dark mb-1 pb-1 border-bottom">{label}</div>}
+    <div
+      className="bg-white border rounded shadow-sm p-2 px-3 small"
+      style={{
+        minWidth: '140px',
+        maxWidth: 'min(280px, 80vw)',
+        overflowWrap: 'anywhere',
+      }}
+    >
+      {label !== undefined && label !== null && label !== '' && (
+        <div className="fw-bold text-dark mb-1 pb-1 border-bottom">
+          {label}
+        </div>
+      )}
+
       <div className="d-flex flex-column gap-1">
         {payload.map((entry, index) => {
-          const formattedValue = formatter ? formatter(entry.value) : entry.value;
+          const formattedValue = formatter
+            ? formatter(entry.value)
+            : entry.value;
+
           return (
-            <div key={`item-${index}`} className="d-flex align-items-center justify-content-between gap-3">
+            <div
+              key={`item-${index}`}
+              className="d-flex align-items-center justify-content-between gap-3"
+            >
               <span className="d-flex align-items-center gap-1 text-muted">
                 <span
-                  className="d-inline-block rounded-circle"
+                  className="d-inline-block rounded-circle flex-shrink-0"
                   style={{
                     width: '8px',
                     height: '8px',
-                    backgroundColor: entry.color || entry.fill || OGC_COLORS.primary,
+                    backgroundColor:
+                      entry.color || entry.fill || OGC_COLORS.primary,
                   }}
                 />
-                {entry.name}:
+                <span>{entry.name}:</span>
               </span>
+
               <span className="fw-semibold text-dark">
                 {formattedValue}
                 {valueSuffix}
@@ -92,6 +119,40 @@ export const ChartContainer = ({
   headerActions = null,
   className = '',
 }) => {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 575.98px)');
+
+    const updateScreenSize = () => {
+      setIsSmallScreen(mediaQuery.matches);
+    };
+
+    updateScreenSize();
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', updateScreenSize);
+
+      return () => {
+        mediaQuery.removeEventListener('change', updateScreenSize);
+      };
+    }
+
+    // Compatibility with older browsers
+    mediaQuery.addListener(updateScreenSize);
+
+    return () => {
+      mediaQuery.removeListener(updateScreenSize);
+    };
+  }, []);
+
+  // Shorten numeric chart heights on small screens.
+  // String heights, such as "100%", remain unchanged.
+  const chartHeight =
+    isSmallScreen && typeof height === 'number'
+      ? Math.min(height, 260)
+      : height;
+
   return (
     <Card
       title={title}
@@ -100,25 +161,40 @@ export const ChartContainer = ({
       className={`h-100 ${className}`}
     >
       <div
-        className="w-100 position-relative d-flex align-items-center justify-content-center"
-        style={{ minHeight: `${height}px` }}
+        role="region"
+        aria-label={`${typeof title === 'string' ? title : 'Chart'} visualization`}
+        className="w-100 position-relative"
+        style={{
+          height: chartHeight,
+          minWidth: 0,
+          minHeight: 0,
+          overflow: 'hidden',
+        }}
       >
         {loading ? (
-          <div className="d-flex flex-column align-items-center justify-content-center py-5">
-            <div className="spinner-border text-primary mb-2" role="status">
+          <div
+            className="h-100 w-100 d-flex flex-column align-items-center justify-content-center py-4"
+            role="status"
+            aria-live="polite"
+          >
+            <div className="spinner-border text-primary mb-2" aria-hidden="true">
               <span className="visually-hidden">Loading chart...</span>
             </div>
-            <small className="text-muted fw-semibold">Loading chart data...</small>
+
+            <small className="text-muted fw-semibold text-center px-3">
+              Loading chart data...
+            </small>
           </div>
         ) : isEmpty ? (
-          <div className="d-flex flex-column align-items-center justify-content-center py-5 text-center px-3">
+          <div className="h-100 w-100 d-flex flex-column align-items-center justify-content-center text-center px-3">
             <div className="bg-light p-3 rounded-circle text-muted mb-2">
-              <i className="bi bi-bar-chart fs-3" />
+              <i className="bi bi-bar-chart fs-3" aria-hidden="true" />
             </div>
+
             <p className="text-muted small mb-0">{emptyMessage}</p>
           </div>
         ) : (
-          <ResponsiveContainer width="100%" height={height}>
+          <ResponsiveContainer width="100%" height="100%" minWidth={0}>
             {children}
           </ResponsiveContainer>
         )}

@@ -1,15 +1,24 @@
+
 import React from 'react';
 import FormInput from './FormInput';
 
 /**
- * 
- * @param {Object} props 
+ * Reusable Date Picker with built-in form styling and error handling.
+ *
+ * @param {Object} props
+ * @param {string} props.label
+ * @param {string} props.name
+ * @param {string} props.value
+ * @param {function} props.onChange
+ * @param {string} [props.error]
+ * @param {string} [props.helpText]
  */
+
 const DatePicker = (props) => {
   return (
-    <FormInput 
-      type="date" 
-      {...props} 
+    <FormInput
+      {...props}
+      type="date"
     />
   );
 };

@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
+
 import {
-  FaChartLine,
-  FaFilter,
-  FaCalendarAlt,
-  FaClock,
-  FaCheckCircle,
-  FaClipboardList
-} from 'react-icons/fa';
-import {
-  LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
 } from 'recharts';
+
 
 import { analyticsService } from '../../services/analyticsService';
 import DashboardGrid from '../../components/dashboard/DashboardGrid';
@@ -58,7 +62,7 @@ const Analytics = () => {
 
   // Columns for the Backlog Data Table
   const backlogColumns = [
-    { key: 'service', label: 'Service Type' },
+    { key: 'service', label: 'Service Type' },  
     { key: 'completed', label: 'Completed' },
     { 
       key: 'pending', 
@@ -135,13 +139,54 @@ const Analytics = () => {
                 subtitle="Historical demand for services over time"
                 isEmpty={data.requestTrend.length === 0}
               >
-                <LineChart data={data.requestTrend} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
-                  <XAxis dataKey="label" tick={{ fontSize: 12, fill: '#6c757d' }} tickLine={false} />
-                  <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: '#6c757d' }} tickLine={false} axisLine={false} />
+                
+                <LineChart
+                  data={data.requestTrend}
+                  margin={{ top: 10, right: 12, left: 0, bottom: 5 }}
+                >
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    vertical={false}
+                    stroke="#e9ecef"
+                  />
+
+                  
+                <XAxis
+                  dataKey="name"
+                  tick={{ fontSize: 10, fill: '#6c757d' }}
+                  tickLine={false}
+                  axisLine={false}
+                  interval={0}
+                  tickMargin={8}
+                  tickFormatter={(value) =>
+                    typeof value === 'string' && value.length > 12
+                      ? `${value.slice(0, 11)}…`
+                      : value
+                  }
+                />
+
+                <YAxis
+                  allowDecimals={false}
+                  tick={{ fontSize: 11, fill: '#6c757d' }}
+                  tickLine={false}
+                  axisLine={false}
+                  width={35}
+                />
+
+
                   <Tooltip content={<CustomChartTooltip />} />
-                  <Line type="monotone" dataKey="requests" name="Total Requests" stroke={OGC_COLORS.primary} strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+
+                  <Line
+                    type="monotone"
+                    dataKey="requests"
+                    name="Total Requests"
+                    stroke={OGC_COLORS.primary}
+                    strokeWidth={3}
+                    dot={{ r: 3 }}
+                    activeDot={{ r: 5 }}
+                  />
                 </LineChart>
+
               </ChartContainer>
             </div>
             <div className="col-12 col-xl-4">
@@ -157,7 +202,20 @@ const Analytics = () => {
                     ))}
                   </Pie>
                   <Tooltip content={<CustomChartTooltip />} />
-                  <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
+                  
+                        <Legend
+                            verticalAlign="bottom"
+                            align="center"
+                            iconType="circle"
+                            height={44}
+                            wrapperStyle={{
+                              fontSize: '11px',
+                              lineHeight: '20px',
+                              paddingTop: '6px',
+                              maxWidth: '100%',
+                            }}
+                          />
+
                 </PieChart>
               </ChartContainer>
             </div>
