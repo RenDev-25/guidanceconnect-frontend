@@ -1,8 +1,112 @@
-{
-  "id": "FUP-0001",
-  "studentId": "STU-0001",
-  "counselingRecordId": "CR-0001",
-  "scheduledDate": "2026-09-25",
-  "status": "Scheduled",
-  "assignedTo": "CNS-001"
-}
+[
+  {
+    "id": "FUP-0001",
+    "studentId": "STU-0001",
+    "studentName": "Renzy",
+    "counselingRecordId": "CR-0001",
+    "scheduledDate": "2026-07-20",
+    "dueDate": "2026-07-20",
+    "actionRequired": "Check academic progress",
+    "status": "Pending",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "FUP-0002",
+    "studentId": "STU-0002",
+    "studentName": "Chloe Gonzaga",
+    "counselingRecordId": "CR-0002",
+    "scheduledDate": "2026-08-01",
+    "dueDate": "2026-08-01",
+    "actionRequired": "Review counseling action plan",
+    "status": "Pending",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "FUP-0003",
+    "studentId": "STU-0003",
+    "studentName": "Jiselle Marasigan",
+    "counselingRecordId": "CR-0003",
+    "scheduledDate": "2026-08-15",
+    "dueDate": "2026-08-15",
+    "actionRequired": "Confirm student support needs",
+    "status": "Pending",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "FUP-0004",
+    "studentId": "STU-0004",
+    "studentName": "John Timothy Carranza",
+    "counselingRecordId": "CR-0004",
+    "scheduledDate": "2026-09-20",
+    "dueDate": "2026-09-20",
+    "actionRequired": "Check referral progress",
+    "status": "Completed",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "FUP-0005",
+    "studentId": "STU-0005",
+    "studentName": "Mark Villanueva",
+    "counselingRecordId": "CR-0005",
+    "scheduledDate": "2026-09-25",
+    "dueDate": "2026-09-25",
+    "actionRequired": "Schedule a follow-up session",
+    "status": "Completed",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "FUP-0006",
+    "studentId": "STU-0006",
+    "studentName": "Sarah Dimaculangan",
+    "counselingRecordId": "CR-0006",
+    "scheduledDate": "2026-09-28",
+    "dueDate": "2026-09-28",
+    "actionRequired": "Check academic progress",
+    "status": "Completed",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "FUP-0007",
+    "studentId": "STU-0007",
+    "studentName": "Angela Reyes",
+    "counselingRecordId": "CR-0007",
+    "scheduledDate": "2026-10-14",
+    "dueDate": "2026-10-14",
+    "actionRequired": "Review counseling action plan",
+    "status": "Scheduled",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "FUP-0008",
+    "studentId": "STU-0008",
+    "studentName": "Miguel Ramos",
+    "counselingRecordId": "CR-0008",
+    "scheduledDate": "2026-10-16",
+    "dueDate": "2026-10-16",
+    "actionRequired": "Confirm student support needs",
+    "status": "Scheduled",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "FUP-0009",
+    "studentId": "STU-0009",
+    "studentName": "Andrea Mendoza",
+    "counselingRecordId": "CR-0009",
+    "scheduledDate": "2026-10-20",
+    "dueDate": "2026-10-20",
+    "actionRequired": "Check referral progress",
+    "status": "Scheduled",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "FUP-0010",
+    "studentId": "STU-0010",
+    "studentName": "Joshua Garcia",
+    "counselingRecordId": "CR-0010",
+    "scheduledDate": "2026-10-22",
+    "dueDate": "2026-10-22",
+    "actionRequired": "Schedule a follow-up session",
+    "status": "Scheduled",
+    "assignedTo": "CNS-002"
+  }
+]

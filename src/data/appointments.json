@@ -1,20 +1,167 @@
 [
   {
     "id": "APT-0001",
-    "studentId": "STU-001",
-    "type": "Routine Counseling",
-    "date": "2026-10-02",
-    "time": "10:00 AM",
-    "status": "Confirmed",
-    "counselor": "Dr. Santos"
+    "studentId": "STU-0001",
+    "type": "Individual Counseling",
+    "date": "2026-08-03",
+    "time": "09:00 AM",
+    "mode": "Online",
+    "status": "Scheduled",
+    "counselor": "Dr. Santos",
+    "assignedTo": "CNS-001"
   },
   {
     "id": "APT-0002",
-    "studentId": "STU-001",
-    "type": "Academic Advising",
-    "date": "2026-10-15",
+    "studentId": "STU-0002",
+    "type": "Academic Counseling",
+    "date": "2026-08-10",
+    "time": "10:00 AM",
+    "mode": "Face-to-Face",
+    "status": "Completed",
+    "counselor": "Dr. Reyes",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "APT-0003",
+    "studentId": "STU-0003",
+    "type": "Career Guidance",
+    "date": "2026-08-17",
+    "time": "11:00 AM",
+    "mode": "Online",
+    "status": "Cancelled",
+    "counselor": "Dr. Santos",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "APT-0004",
+    "studentId": "STU-0004",
+    "type": "Individual Counseling",
+    "date": "2026-08-24",
+    "time": "01:00 PM",
+    "mode": "Face-to-Face",
+    "status": "No-Show",
+    "counselor": "Dr. Reyes",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "APT-0005",
+    "studentId": "STU-0005",
+    "type": "Academic Counseling",
+    "date": "2026-08-29",
     "time": "02:00 PM",
-    "status": "Pending",
-    "counselor": "TBD"
+    "mode": "Online",
+    "status": "Completed",
+    "counselor": "Dr. Santos",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "APT-0006",
+    "studentId": "STU-0006",
+    "type": "Career Guidance",
+    "date": "2026-09-02",
+    "time": "09:00 AM",
+    "mode": "Face-to-Face",
+    "status": "Scheduled",
+    "counselor": "Dr. Reyes",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "APT-0007",
+    "studentId": "STU-0007",
+    "type": "Individual Counseling",
+    "date": "2026-09-08",
+    "time": "10:00 AM",
+    "mode": "Online",
+    "status": "Completed",
+    "counselor": "Dr. Santos",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "APT-0008",
+    "studentId": "STU-0008",
+    "type": "Academic Counseling",
+    "date": "2026-09-12",
+    "time": "11:00 AM",
+    "mode": "Face-to-Face",
+    "status": "Scheduled",
+    "counselor": "Dr. Reyes",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "APT-0009",
+    "studentId": "STU-0009",
+    "type": "Career Guidance",
+    "date": "2026-09-18",
+    "time": "01:00 PM",
+    "mode": "Online",
+    "status": "Cancelled",
+    "counselor": "Dr. Santos",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "APT-0010",
+    "studentId": "STU-0010",
+    "type": "Individual Counseling",
+    "date": "2026-09-22",
+    "time": "02:00 PM",
+    "mode": "Face-to-Face",
+    "status": "Completed",
+    "counselor": "Dr. Reyes",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "APT-0011",
+    "studentId": "STU-0011",
+    "type": "Academic Counseling",
+    "date": "2026-09-26",
+    "time": "09:00 AM",
+    "mode": "Online",
+    "status": "No-Show",
+    "counselor": "Dr. Santos",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "APT-0012",
+    "studentId": "STU-0012",
+    "type": "Career Guidance",
+    "date": "2026-09-30",
+    "time": "10:00 AM",
+    "mode": "Face-to-Face",
+    "status": "Scheduled",
+    "counselor": "Dr. Reyes",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "APT-0013",
+    "studentId": "STU-0001",
+    "type": "Individual Counseling",
+    "date": "2026-10-02",
+    "time": "11:00 AM",
+    "mode": "Online",
+    "status": "Completed",
+    "counselor": "Dr. Santos",
+    "assignedTo": "CNS-001"
+  },
+  {
+    "id": "APT-0014",
+    "studentId": "STU-0002",
+    "type": "Academic Counseling",
+    "date": "2026-10-05",
+    "time": "01:00 PM",
+    "mode": "Face-to-Face",
+    "status": "Scheduled",
+    "counselor": "Dr. Reyes",
+    "assignedTo": "CNS-002"
+  },
+  {
+    "id": "APT-0015",
+    "studentId": "STU-0003",
+    "type": "Career Guidance",
+    "date": "2026-10-08",
+    "time": "02:00 PM",
+    "mode": "Online",
+    "status": "Completed",
+    "counselor": "Dr. Santos",
+    "assignedTo": "CNS-001"
   }
 ]

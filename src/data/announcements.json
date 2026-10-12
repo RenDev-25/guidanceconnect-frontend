@@ -1,9 +1,56 @@
-{
-  "id": "ANN-0001",
-  "title": "Guidance Week 2026",
-  "content": "The Office of Guidance and Counseling will conduct...",
-  "audience": "All Students",
-  "status": "Published",
-  "publishDate": "2026-09-20",
-  "expirationDate": "2026-10-05"
-}
+[
+  {
+    "id": "ANN-0001",
+    "title": "Guidance Week 2026",
+    "content": "Demo announcement for students using the Guidance and Counseling System.",
+    "audience": "All Students",
+    "status": "Published",
+    "publishDate": "2026-09-02",
+    "expirationDate": "2026-09-12"
+  },
+  {
+    "id": "ANN-0002",
+    "title": "Career Orientation Announcement",
+    "content": "Demo announcement for students using the Guidance and Counseling System.",
+    "audience": "Selected Students",
+    "status": "Published",
+    "publishDate": "2026-09-08",
+    "expirationDate": "2026-09-18"
+  },
+  {
+    "id": "ANN-0003",
+    "title": "Student Wellness Seminar",
+    "content": "Demo announcement for students using the Guidance and Counseling System.",
+    "audience": "All Students",
+    "status": "Published",
+    "publishDate": "2026-09-12",
+    "expirationDate": "2026-09-22"
+  },
+  {
+    "id": "ANN-0004",
+    "title": "Counseling Services Reminder",
+    "content": "Demo announcement for students using the Guidance and Counseling System.",
+    "audience": "Selected Students",
+    "status": "Published",
+    "publishDate": "2026-09-18",
+    "expirationDate": "2026-09-26"
+  },
+  {
+    "id": "ANN-0005",
+    "title": "Academic Support Program",
+    "content": "Demo announcement for students using the Guidance and Counseling System.",
+    "audience": "All Students",
+    "status": "Draft",
+    "publishDate": "2026-09-22",
+    "expirationDate": "2026-09-30"
+  },
+  {
+    "id": "ANN-0006",
+    "title": "Career Preparation Workshop",
+    "content": "Demo announcement for students using the Guidance and Counseling System.",
+    "audience": "Selected Students",
+    "status": "Draft",
+    "publishDate": "2026-09-26",
+    "expirationDate": "2026-10-02"
+  }
+]

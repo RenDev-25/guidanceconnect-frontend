@@ -1,18 +1,50 @@
 [
-  { 
-    "id": "WLK-0001", 
-    "studentId": "STU-1042", 
-    "studentName": "Chloe Gonzaga", 
-    "purpose": "Good Moral Certificate", 
-    "status": "Waiting", 
-    "timeIn": "09:15 AM" 
+  {
+    "id": "WLK-0001",
+    "studentId": "STU-0002",
+    "studentName": "Chloe Gonzaga",
+    "purpose": "Good Moral Certificate",
+    "status": "Waiting",
+    "timeIn": "09:15 AM"
   },
-  { 
-    "id": "WLK-0002", 
-    "studentId": "STU-1043", 
-    "studentName": "Jiselle Marasigan", 
-    "purpose": "Counseling Walk-In", 
-    "status": "Waiting", 
-    "timeIn": "09:22 AM" 
+  {
+    "id": "WLK-0002",
+    "studentId": "STU-0003",
+    "studentName": "Jiselle Marasigan",
+    "purpose": "Counseling Walk-In",
+    "status": "Serving",
+    "timeIn": "09:22 AM"
+  },
+  {
+    "id": "WLK-0003",
+    "studentId": "STU-0004",
+    "studentName": "John Timothy Carranza",
+    "purpose": "Career Guidance",
+    "status": "Served",
+    "timeIn": "10:00 AM"
+  },
+  {
+    "id": "WLK-0004",
+    "studentId": "STU-0005",
+    "studentName": "Mark Villanueva",
+    "purpose": "Academic Concern",
+    "status": "Waiting",
+    "timeIn": "10:30 AM"
+  },
+  {
+    "id": "WLK-0005",
+    "studentId": "STU-0006",
+    "studentName": "Sarah Dimaculangan",
+    "purpose": "Document Inquiry",
+    "status": "Serving",
+    "timeIn": "01:15 PM"
+  },
+  {
+    "id": "WLK-0006",
+    "studentId": "STU-0007",
+    "studentName": "Angela Reyes",
+    "purpose": "Student Support",
+    "status": "Served",
+    "timeIn": "02:00 PM"
   }
 ]

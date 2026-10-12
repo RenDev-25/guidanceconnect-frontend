@@ -1,8 +1,10 @@
-{
-  "id": "CAR-0001",
-  "studentId": "STU-0001",
-  "serviceType": "Career Counseling",
-  "status": "Completed",
-  "dateRequested": "2026-09-10",
-  "assignedTo": "FAC-002"
-}
+[
+  {
+    "id": "CAR-0001",
+    "studentId": "STU-0001",
+    "serviceType": "Career Counseling",
+    "status": "Completed",
+    "dateRequested": "2026-09-10",
+    "assignedTo": "FAC-002"
+  }
+]

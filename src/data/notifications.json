@@ -1,9 +1,302 @@
-{
-  "id": "NOT-0001",
-  "userId": "USR-0001",
-  "title": "Appointment Confirmed",
-  "message": "Your counseling appointment has been confirmed.",
-  "type": "Appointment",
-  "isRead": false,
-  "createdAt": "2026-09-15T09:30:00"
-}
+[
+  {
+    "id": "NOT-0001",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "Request Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Request",
+    "isRead": true,
+    "createdAt": "2026-07-15T09:30:00"
+  },
+  {
+    "id": "NOT-0002",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "Appointment Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Appointment",
+    "isRead": false,
+    "createdAt": "2026-07-22T09:30:00"
+  },
+  {
+    "id": "NOT-0003",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "New Guidance Announcement",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Announcement",
+    "isRead": true,
+    "createdAt": "2026-07-29T09:30:00"
+  },
+  {
+    "id": "NOT-0004",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "Document Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Document",
+    "isRead": false,
+    "createdAt": "2026-08-03T09:30:00"
+  },
+  {
+    "id": "NOT-0005",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "Follow-up Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Follow-up",
+    "isRead": true,
+    "createdAt": "2026-08-10T09:30:00"
+  },
+  {
+    "id": "NOT-0006",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "Request Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Request",
+    "isRead": false,
+    "createdAt": "2026-08-17T09:30:00"
+  },
+  {
+    "id": "NOT-0007",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "Appointment Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Appointment",
+    "isRead": true,
+    "createdAt": "2026-08-24T09:30:00"
+  },
+  {
+    "id": "NOT-0008",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "New Guidance Announcement",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Announcement",
+    "isRead": false,
+    "createdAt": "2026-08-29T09:30:00"
+  },
+  {
+    "id": "NOT-0009",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "Document Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Document",
+    "isRead": true,
+    "createdAt": "2026-09-02T09:30:00"
+  },
+  {
+    "id": "NOT-0010",
+    "userId": "USR-0001",
+    "targetRole": "student",
+    "title": "Follow-up Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Follow-up",
+    "isRead": false,
+    "createdAt": "2026-09-08T09:30:00"
+  },
+  {
+    "id": "NOT-0011",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "Request Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Request",
+    "isRead": true,
+    "createdAt": "2026-07-22T09:30:00"
+  },
+  {
+    "id": "NOT-0012",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "Appointment Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Appointment",
+    "isRead": false,
+    "createdAt": "2026-07-29T09:30:00"
+  },
+  {
+    "id": "NOT-0013",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "New Guidance Announcement",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Announcement",
+    "isRead": true,
+    "createdAt": "2026-08-03T09:30:00"
+  },
+  {
+    "id": "NOT-0014",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "Document Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Document",
+    "isRead": false,
+    "createdAt": "2026-08-10T09:30:00"
+  },
+  {
+    "id": "NOT-0015",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "Follow-up Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Follow-up",
+    "isRead": true,
+    "createdAt": "2026-08-17T09:30:00"
+  },
+  {
+    "id": "NOT-0016",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "Request Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Request",
+    "isRead": false,
+    "createdAt": "2026-08-24T09:30:00"
+  },
+  {
+    "id": "NOT-0017",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "Appointment Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Appointment",
+    "isRead": true,
+    "createdAt": "2026-08-29T09:30:00"
+  },
+  {
+    "id": "NOT-0018",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "New Guidance Announcement",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Announcement",
+    "isRead": false,
+    "createdAt": "2026-09-02T09:30:00"
+  },
+  {
+    "id": "NOT-0019",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "Document Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Document",
+    "isRead": true,
+    "createdAt": "2026-09-08T09:30:00"
+  },
+  {
+    "id": "NOT-0020",
+    "userId": "USR-0002",
+    "targetRole": "facilitator",
+    "title": "Follow-up Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Follow-up",
+    "isRead": false,
+    "createdAt": "2026-09-12T09:30:00"
+  },
+  {
+    "id": "NOT-0021",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "Request Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Request",
+    "isRead": true,
+    "createdAt": "2026-07-29T09:30:00"
+  },
+  {
+    "id": "NOT-0022",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "Appointment Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Appointment",
+    "isRead": false,
+    "createdAt": "2026-08-03T09:30:00"
+  },
+  {
+    "id": "NOT-0023",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "New Guidance Announcement",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Announcement",
+    "isRead": true,
+    "createdAt": "2026-08-10T09:30:00"
+  },
+  {
+    "id": "NOT-0024",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "Document Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Document",
+    "isRead": false,
+    "createdAt": "2026-08-17T09:30:00"
+  },
+  {
+    "id": "NOT-0025",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "Follow-up Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Follow-up",
+    "isRead": true,
+    "createdAt": "2026-08-24T09:30:00"
+  },
+  {
+    "id": "NOT-0026",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "Request Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Request",
+    "isRead": false,
+    "createdAt": "2026-08-29T09:30:00"
+  },
+  {
+    "id": "NOT-0027",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "Appointment Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Appointment",
+    "isRead": true,
+    "createdAt": "2026-09-02T09:30:00"
+  },
+  {
+    "id": "NOT-0028",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "New Guidance Announcement",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Announcement",
+    "isRead": false,
+    "createdAt": "2026-09-08T09:30:00"
+  },
+  {
+    "id": "NOT-0029",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "Document Status Updated",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Document",
+    "isRead": true,
+    "createdAt": "2026-09-12T09:30:00"
+  },
+  {
+    "id": "NOT-0030",
+    "userId": "USR-0003",
+    "targetRole": "counselor",
+    "title": "Follow-up Reminder",
+    "message": "This is a sample notification for demonstration and testing.",
+    "type": "Follow-up",
+    "isRead": false,
+    "createdAt": "2026-09-18T09:30:00"
+  }
+]

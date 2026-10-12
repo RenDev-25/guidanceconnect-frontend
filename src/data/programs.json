@@ -1,10 +1,62 @@
-{
-  "id": "PRG-0001",
-  "name": "Career Orientation Program",
-  "category": "Career Development",
-  "description": "Career preparation and orientation program for students.",
-  "startDate": "2026-10-05",
-  "endDate": "2026-10-05",
-  "status": "Scheduled",
-  "targetAudience": "Third-Year Students"
-}
+[
+  {
+    "id": "PRG-0001",
+    "name": "Career Orientation Program",
+    "category": "Career Development",
+    "description": "Demo program record for the Guidance and Counseling System.",
+    "startDate": "2026-08-24",
+    "endDate": "2026-08-24",
+    "status": "Scheduled",
+    "targetAudience": "All Students"
+  },
+  {
+    "id": "PRG-0002",
+    "name": "Student Wellness Seminar",
+    "category": "Wellness",
+    "description": "Demo program record for the Guidance and Counseling System.",
+    "startDate": "2026-08-29",
+    "endDate": "2026-08-29",
+    "status": "Completed",
+    "targetAudience": "First-Year Students"
+  },
+  {
+    "id": "PRG-0003",
+    "name": "Stress Management Workshop",
+    "category": "Mental Health",
+    "description": "Demo program record for the Guidance and Counseling System.",
+    "startDate": "2026-09-02",
+    "endDate": "2026-09-02",
+    "status": "Scheduled",
+    "targetAudience": "Third-Year Students"
+  },
+  {
+    "id": "PRG-0004",
+    "name": "Career Preparation Session",
+    "category": "Career Development",
+    "description": "Demo program record for the Guidance and Counseling System.",
+    "startDate": "2026-09-08",
+    "endDate": "2026-09-08",
+    "status": "Scheduled",
+    "targetAudience": "All Students"
+  },
+  {
+    "id": "PRG-0005",
+    "name": "Peer Support Program",
+    "category": "Student Support",
+    "description": "Demo program record for the Guidance and Counseling System.",
+    "startDate": "2026-09-12",
+    "endDate": "2026-09-12",
+    "status": "Completed",
+    "targetAudience": "First-Year Students"
+  },
+  {
+    "id": "PRG-0006",
+    "name": "Academic Success Seminar",
+    "category": "Academic Support",
+    "description": "Demo program record for the Guidance and Counseling System.",
+    "startDate": "2026-09-18",
+    "endDate": "2026-09-18",
+    "status": "Scheduled",
+    "targetAudience": "Third-Year Students"
+  }
+]

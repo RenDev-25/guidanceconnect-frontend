@@ -4,17 +4,249 @@
     "studentId": "STU-0001",
     "serviceType": "Individual Counseling",
     "status": "Pending",
-    "dateSubmitted": "2026-09-10",
+    "dateSubmitted": "2026-07-15",
     "assignedTo": "FAC-001",
-    "priority": "Normal"
+    "priority": "High",
+    "completedAt": null
   },
   {
     "id": "REQ-0002",
-    "studentId": "STU-0001",
+    "studentId": "STU-0002",
     "serviceType": "Good Moral Certificate",
     "status": "Processing",
-    "dateSubmitted": "2026-09-15",
+    "dateSubmitted": "2026-07-22",
+    "assignedTo": "FAC-002",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0003",
+    "studentId": "STU-0003",
+    "serviceType": "Career Guidance",
+    "status": "Completed",
+    "dateSubmitted": "2026-07-29",
+    "assignedTo": "FAC-003",
+    "priority": "Normal",
+    "completedAt": "2026-08-10"
+  },
+  {
+    "id": "REQ-0004",
+    "studentId": "STU-0004",
+    "serviceType": "Academic Counseling",
+    "status": "Pending",
+    "dateSubmitted": "2026-08-03",
     "assignedTo": "FAC-001",
-    "priority": "Normal"
+    "priority": "Low",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0005",
+    "studentId": "STU-0005",
+    "serviceType": "Clearance Signing",
+    "status": "In Progress",
+    "dateSubmitted": "2026-08-10",
+    "assignedTo": "FAC-002",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0006",
+    "studentId": "STU-0006",
+    "serviceType": "Individual Counseling",
+    "status": "Completed",
+    "dateSubmitted": "2026-08-17",
+    "assignedTo": "FAC-003",
+    "priority": "High",
+    "completedAt": "2026-08-29"
+  },
+  {
+    "id": "REQ-0007",
+    "studentId": "STU-0007",
+    "serviceType": "Good Moral Certificate",
+    "status": "Cancelled",
+    "dateSubmitted": "2026-08-24",
+    "assignedTo": "FAC-001",
+    "priority": "Low",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0008",
+    "studentId": "STU-0008",
+    "serviceType": "Career Guidance",
+    "status": "Under Review",
+    "dateSubmitted": "2026-08-29",
+    "assignedTo": "FAC-002",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0009",
+    "studentId": "STU-0009",
+    "serviceType": "Academic Counseling",
+    "status": "Completed",
+    "dateSubmitted": "2026-09-02",
+    "assignedTo": "FAC-003",
+    "priority": "Normal",
+    "completedAt": "2026-09-12"
+  },
+  {
+    "id": "REQ-0010",
+    "studentId": "STU-0010",
+    "serviceType": "Clearance Signing",
+    "status": "Pending",
+    "dateSubmitted": "2026-09-08",
+    "assignedTo": "FAC-001",
+    "priority": "Low",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0011",
+    "studentId": "STU-0011",
+    "serviceType": "Individual Counseling",
+    "status": "Pending",
+    "dateSubmitted": "2026-09-12",
+    "assignedTo": "FAC-002",
+    "priority": "High",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0012",
+    "studentId": "STU-0012",
+    "serviceType": "Good Moral Certificate",
+    "status": "Processing",
+    "dateSubmitted": "2026-09-18",
+    "assignedTo": "FAC-003",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0013",
+    "studentId": "STU-0001",
+    "serviceType": "Career Guidance",
+    "status": "Completed",
+    "dateSubmitted": "2026-09-22",
+    "assignedTo": "FAC-001",
+    "priority": "Low",
+    "completedAt": "2026-09-30"
+  },
+  {
+    "id": "REQ-0014",
+    "studentId": "STU-0002",
+    "serviceType": "Academic Counseling",
+    "status": "Pending",
+    "dateSubmitted": "2026-09-26",
+    "assignedTo": "FAC-002",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0015",
+    "studentId": "STU-0003",
+    "serviceType": "Clearance Signing",
+    "status": "In Progress",
+    "dateSubmitted": "2026-09-30",
+    "assignedTo": "FAC-003",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0016",
+    "studentId": "STU-0004",
+    "serviceType": "Individual Counseling",
+    "status": "Completed",
+    "dateSubmitted": "2026-10-02",
+    "assignedTo": "FAC-001",
+    "priority": "High",
+    "completedAt": "2026-10-08"
+  },
+  {
+    "id": "REQ-0017",
+    "studentId": "STU-0005",
+    "serviceType": "Good Moral Certificate",
+    "status": "Cancelled",
+    "dateSubmitted": "2026-10-05",
+    "assignedTo": "FAC-002",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0018",
+    "studentId": "STU-0006",
+    "serviceType": "Career Guidance",
+    "status": "Under Review",
+    "dateSubmitted": "2026-10-08",
+    "assignedTo": "FAC-003",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0019",
+    "studentId": "STU-0007",
+    "serviceType": "Academic Counseling",
+    "status": "Completed",
+    "dateSubmitted": "2026-10-10",
+    "assignedTo": "FAC-001",
+    "priority": "Low",
+    "completedAt": "2026-07-15"
+  },
+  {
+    "id": "REQ-0020",
+    "studentId": "STU-0008",
+    "serviceType": "Clearance Signing",
+    "status": "Pending",
+    "dateSubmitted": "2026-10-12",
+    "assignedTo": "FAC-002",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0021",
+    "studentId": "STU-0009",
+    "serviceType": "Individual Counseling",
+    "status": "Pending",
+    "dateSubmitted": "2026-07-15",
+    "assignedTo": "FAC-003",
+    "priority": "High",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0022",
+    "studentId": "STU-0010",
+    "serviceType": "Good Moral Certificate",
+    "status": "Processing",
+    "dateSubmitted": "2026-07-22",
+    "assignedTo": "FAC-001",
+    "priority": "Low",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0023",
+    "studentId": "STU-0011",
+    "serviceType": "Career Guidance",
+    "status": "Completed",
+    "dateSubmitted": "2026-07-29",
+    "assignedTo": "FAC-002",
+    "priority": "Normal",
+    "completedAt": "2026-08-10"
+  },
+  {
+    "id": "REQ-0024",
+    "studentId": "STU-0012",
+    "serviceType": "Academic Counseling",
+    "status": "Pending",
+    "dateSubmitted": "2026-08-03",
+    "assignedTo": "FAC-003",
+    "priority": "Normal",
+    "completedAt": null
+  },
+  {
+    "id": "REQ-0025",
+    "studentId": "STU-0001",
+    "serviceType": "Clearance Signing",
+    "status": "In Progress",
+    "dateSubmitted": "2026-08-10",
+    "assignedTo": "FAC-001",
+    "priority": "Low",
+    "completedAt": null
   }
 ]

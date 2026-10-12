@@ -1,9 +1,134 @@
-{
-  "id": "GMR-0001",
-  "studentId": "STU-0001",
-  "requestDate": "2026-09-12",
-  "purpose": "Scholarship Application",
-  "status": "Processing",
-  "processedBy": "FAC-001",
-  "documentId": "DOC-0001"
-}
+[
+  {
+    "id": "GMR-0001",
+    "studentId": "STU-0001",
+    "studentName": "Renzy",
+    "requestDate": "2026-07-29",
+    "dateRequested": "2026-07-29",
+    "purpose": "Scholarship Application",
+    "status": "Pending",
+    "processedBy": "FAC-001",
+    "documentId": "DOC-0001"
+  },
+  {
+    "id": "GMR-0002",
+    "studentId": "STU-0002",
+    "studentName": "Chloe Gonzaga",
+    "requestDate": "2026-08-03",
+    "dateRequested": "2026-08-03",
+    "purpose": "Employment",
+    "status": "Processing",
+    "processedBy": "FAC-002",
+    "documentId": "DOC-0002"
+  },
+  {
+    "id": "GMR-0003",
+    "studentId": "STU-0003",
+    "studentName": "Jiselle Marasigan",
+    "requestDate": "2026-08-10",
+    "dateRequested": "2026-08-10",
+    "purpose": "Internship",
+    "status": "Completed",
+    "processedBy": "FAC-003",
+    "documentId": "DOC-0003"
+  },
+  {
+    "id": "GMR-0004",
+    "studentId": "STU-0004",
+    "studentName": "John Timothy Carranza",
+    "requestDate": "2026-08-17",
+    "dateRequested": "2026-08-17",
+    "purpose": "Transfer to Another School",
+    "status": "Rejected",
+    "processedBy": "FAC-001",
+    "documentId": "DOC-0004"
+  },
+  {
+    "id": "GMR-0005",
+    "studentId": "STU-0005",
+    "studentName": "Mark Villanueva",
+    "requestDate": "2026-08-24",
+    "dateRequested": "2026-08-24",
+    "purpose": "Personal Copy",
+    "status": "Pending",
+    "processedBy": "FAC-002",
+    "documentId": "DOC-0005"
+  },
+  {
+    "id": "GMR-0006",
+    "studentId": "STU-0006",
+    "studentName": "Sarah Dimaculangan",
+    "requestDate": "2026-08-29",
+    "dateRequested": "2026-08-29",
+    "purpose": "School Requirement",
+    "status": "Processing",
+    "processedBy": "FAC-003",
+    "documentId": "DOC-0006"
+  },
+  {
+    "id": "GMR-0007",
+    "studentId": "STU-0007",
+    "studentName": "Angela Reyes",
+    "requestDate": "2026-09-02",
+    "dateRequested": "2026-09-02",
+    "purpose": "Scholarship Application",
+    "status": "Completed",
+    "processedBy": "FAC-001",
+    "documentId": "DOC-0007"
+  },
+  {
+    "id": "GMR-0008",
+    "studentId": "STU-0008",
+    "studentName": "Miguel Ramos",
+    "requestDate": "2026-09-08",
+    "dateRequested": "2026-09-08",
+    "purpose": "Employment",
+    "status": "Rejected",
+    "processedBy": "FAC-002",
+    "documentId": "DOC-0008"
+  },
+  {
+    "id": "GMR-0009",
+    "studentId": "STU-0009",
+    "studentName": "Andrea Mendoza",
+    "requestDate": "2026-09-12",
+    "dateRequested": "2026-09-12",
+    "purpose": "Internship",
+    "status": "Pending",
+    "processedBy": "FAC-003",
+    "documentId": "DOC-0009"
+  },
+  {
+    "id": "GMR-0010",
+    "studentId": "STU-0010",
+    "studentName": "Joshua Garcia",
+    "requestDate": "2026-09-18",
+    "dateRequested": "2026-09-18",
+    "purpose": "Transfer to Another School",
+    "status": "Processing",
+    "processedBy": "FAC-001",
+    "documentId": "DOC-0010"
+  },
+  {
+    "id": "GMR-0011",
+    "studentId": "STU-0011",
+    "studentName": "Patricia Flores",
+    "requestDate": "2026-09-22",
+    "dateRequested": "2026-09-22",
+    "purpose": "Personal Copy",
+    "status": "Completed",
+    "processedBy": "FAC-002",
+    "documentId": "DOC-0011"
+  },
+  {
+    "id": "GMR-0012",
+    "studentId": "STU-0012",
+    "studentName": "Daniel Cruz",
+    "requestDate": "2026-09-26",
+    "dateRequested": "2026-09-26",
+    "purpose": "School Requirement",
+    "status": "Rejected",
+    "processedBy": "FAC-003",
+    "documentId": "DOC-0012"
+  }
+]

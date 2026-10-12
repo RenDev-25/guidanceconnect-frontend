@@ -1,9 +1,9 @@
 [
   {
-    "id": "STU-08125",
-    "studentNumber": "2024-08125",
+    "id": "STU-0001",
+    "studentNumber": "2022-10001",
     "name": "Renzy",
-    "email": "renzy@g.batstate-u.edu.ph",
+    "email": "student1@g.batstate-u.edu.ph",
     "program": "BS Information Technology",
     "yearLevel": 2,
     "section": "IT-2101",
@@ -11,10 +11,10 @@
     "status": "Active"
   },
   {
-    "id": "STU-1042",
-    "studentNumber": "2024-10042",
+    "id": "STU-0002",
+    "studentNumber": "2022-10002",
     "name": "Chloe Gonzaga",
-    "email": "cgonzaga@g.batstate-u.edu.ph",
+    "email": "student2@g.batstate-u.edu.ph",
     "program": "BS Information Technology",
     "yearLevel": 2,
     "section": "IT-2101",
@@ -22,10 +22,10 @@
     "status": "Active"
   },
   {
-    "id": "STU-1043",
-    "studentNumber": "2024-10043",
+    "id": "STU-0003",
+    "studentNumber": "2022-10003",
     "name": "Jiselle Marasigan",
-    "email": "jmarasigan@g.batstate-u.edu.ph",
+    "email": "student3@g.batstate-u.edu.ph",
     "program": "BS Information Technology",
     "yearLevel": 2,
     "section": "IT-2101",
@@ -33,10 +33,10 @@
     "status": "Active"
   },
   {
-    "id": "STU-1044",
-    "studentNumber": "2024-10044",
+    "id": "STU-0004",
+    "studentNumber": "2022-10004",
     "name": "John Timothy Carranza",
-    "email": "jcarranza@g.batstate-u.edu.ph",
+    "email": "student4@g.batstate-u.edu.ph",
     "program": "BS Information Technology",
     "yearLevel": 2,
     "section": "IT-2101",
@@ -44,10 +44,10 @@
     "status": "Active"
   },
   {
-    "id": "STU-2001",
-    "studentNumber": "2023-20001",
+    "id": "STU-0005",
+    "studentNumber": "2023-10005",
     "name": "Mark Villanueva",
-    "email": "mvillanueva@g.batstate-u.edu.ph",
+    "email": "student5@g.batstate-u.edu.ph",
     "program": "BS Computer Science",
     "yearLevel": 3,
     "section": "CS-3101",
@@ -55,14 +55,80 @@
     "status": "Active"
   },
   {
-    "id": "STU-2002",
-    "studentNumber": "2025-20002",
+    "id": "STU-0006",
+    "studentNumber": "2021-10006",
     "name": "Sarah Dimaculangan",
-    "email": "sdimaculangan@g.batstate-u.edu.ph",
+    "email": "student6@g.batstate-u.edu.ph",
     "program": "BS Computer Science",
     "yearLevel": 1,
     "section": "CS-1102",
     "campus": "Alangilan",
     "status": "Inactive"
+  },
+  {
+    "id": "STU-0007",
+    "studentNumber": "2021-10007",
+    "name": "Angela Reyes",
+    "email": "student7@g.batstate-u.edu.ph",
+    "program": "BS Information Technology",
+    "yearLevel": 1,
+    "section": "IT-1102",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-0008",
+    "studentNumber": "2023-10008",
+    "name": "Miguel Ramos",
+    "email": "student8@g.batstate-u.edu.ph",
+    "program": "BS Information Technology",
+    "yearLevel": 3,
+    "section": "IT-3101",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-0009",
+    "studentNumber": "2022-10009",
+    "name": "Andrea Mendoza",
+    "email": "student9@g.batstate-u.edu.ph",
+    "program": "BS Computer Science",
+    "yearLevel": 2,
+    "section": "CS-2101",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-0010",
+    "studentNumber": "2024-10010",
+    "name": "Joshua Garcia",
+    "email": "student10@g.batstate-u.edu.ph",
+    "program": "BS Information Technology",
+    "yearLevel": 4,
+    "section": "IT-4101",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-0011",
+    "studentNumber": "2021-10011",
+    "name": "Patricia Flores",
+    "email": "student11@g.batstate-u.edu.ph",
+    "program": "BS Information Technology",
+    "yearLevel": 1,
+    "section": "IT-1101",
+    "campus": "Alangilan",
+    "status": "Active"
+  },
+  {
+    "id": "STU-0012",
+    "studentNumber": "2024-10012",
+    "name": "Daniel Cruz",
+    "email": "student12@g.batstate-u.edu.ph",
+    "program": "BS Computer Science",
+    "yearLevel": 4,
+    "section": "CS-4101",
+    "campus": "Alangilan",
+    "status": "Active"
   }
 ]

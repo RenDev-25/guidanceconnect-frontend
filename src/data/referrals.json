@@ -1,9 +1,74 @@
-{
-  "id": "REF-0001",
-  "studentId": "STU-0001",
-  "counselingRecordId": "CR-0001",
-  "referredTo": "Career Services",
-  "reason": "Career guidance requested",
-  "status": "Pending",
-  "dateCreated": "2026-09-18"
-}
+[
+  {
+    "id": "REF-0001",
+    "studentId": "STU-0001",
+    "counselingRecordId": "CR-0001",
+    "referredTo": "Career Services",
+    "reason": "Career guidance requested",
+    "status": "Pending",
+    "dateCreated": "2026-08-10"
+  },
+  {
+    "id": "REF-0002",
+    "studentId": "STU-0002",
+    "counselingRecordId": "CR-0002",
+    "referredTo": "Academic Advising",
+    "reason": "Academic support recommended",
+    "status": "Accepted",
+    "dateCreated": "2026-08-17"
+  },
+  {
+    "id": "REF-0003",
+    "studentId": "STU-0003",
+    "counselingRecordId": "CR-0003",
+    "referredTo": "Student Support",
+    "reason": "Additional student support needed",
+    "status": "Completed",
+    "dateCreated": "2026-08-24"
+  },
+  {
+    "id": "REF-0004",
+    "studentId": "STU-0004",
+    "counselingRecordId": "CR-0004",
+    "referredTo": "Office of Guidance and Counseling",
+    "reason": "Follow-up assessment recommended",
+    "status": "Pending",
+    "dateCreated": "2026-08-29"
+  },
+  {
+    "id": "REF-0005",
+    "studentId": "STU-0005",
+    "counselingRecordId": "CR-0005",
+    "referredTo": "Career Services",
+    "reason": "Career guidance requested",
+    "status": "Pending",
+    "dateCreated": "2026-09-02"
+  },
+  {
+    "id": "REF-0006",
+    "studentId": "STU-0006",
+    "counselingRecordId": "CR-0006",
+    "referredTo": "Academic Advising",
+    "reason": "Academic support recommended",
+    "status": "Accepted",
+    "dateCreated": "2026-09-08"
+  },
+  {
+    "id": "REF-0007",
+    "studentId": "STU-0007",
+    "counselingRecordId": "CR-0007",
+    "referredTo": "Student Support",
+    "reason": "Additional student support needed",
+    "status": "Completed",
+    "dateCreated": "2026-09-12"
+  },
+  {
+    "id": "REF-0008",
+    "studentId": "STU-0008",
+    "counselingRecordId": "CR-0008",
+    "referredTo": "Office of Guidance and Counseling",
+    "reason": "Follow-up assessment recommended",
+    "status": "Pending",
+    "dateCreated": "2026-09-18"
+  }
+]
