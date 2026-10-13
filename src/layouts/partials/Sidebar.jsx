@@ -3,97 +3,93 @@ import { NavLink } from "react-router-dom";
 import {
   FaHome,
   FaClipboardList,
-  FaCalendarAlt,
   FaComments,
   FaFileAlt,
+  FaCalendarAlt,
+  FaCalendarPlus,
+  FaFileUpload,
+  FaTasks,
+  FaHistory,
+  FaUser,
+  FaBell,
+  FaBullhorn,
+  FaRobot,
   FaUsers,
+  FaUserGraduate,
   FaChartBar,
+  FaShareAlt,
+  FaBriefcase,
+  FaClipboardCheck,
+  FaLightbulb,
   FaUserCog,
   FaCog,
-  FaTimes,
 } from "react-icons/fa";
 
 const iconMap = {
   FaHome,
   FaClipboardList,
-  FaCalendarAlt,
   FaComments,
   FaFileAlt,
+  FaCalendarAlt,
+  FaCalendarPlus,
+  FaFileUpload,
+  FaTasks,
+  FaHistory,
+  FaUser,
+  FaBell,
+  FaBullhorn,
+  FaRobot,
   FaUsers,
+  FaUserGraduate,
   FaChartBar,
+  FaShareAlt,
+  FaBriefcase,
+  FaClipboardCheck,
+  FaLightbulb,
   FaUserCog,
   FaCog,
 };
 
-function Sidebar({ navItems, isOpen, onClose }) {
+export default function Sidebar({ navItems = [], sidebarOpen = true }) {
   return (
-    <>
-      {isOpen && (
-        <button
-          type="button"
-          className="sidebar-overlay d-lg-none"
-          onClick={onClose}
-          aria-label="Close navigation menu"
-        />
-      )}
+    <aside className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
+      <nav className="sidebar-nav">
+        {navItems.map((section, sectionIndex) => {
+          // Support both grouped navigation and older flat entries.
+          const grouped = Array.isArray(section.items);
+          const items = grouped ? section.items : [section];
 
-      <aside
-        id="app-sidebar"
-        className={`sidebar ${isOpen ? "sidebar-open" : ""}`}
-      >
-        <div className="sidebar-header">
-            <div className="sidebar-brand">
-                <div className="brand-logo">
-                <img
-                    src="/images/ogc-logo.png"
-                    alt="BatStateU Guidance and Counseling Office Logo"
-                />
+          return (
+            <div className="sidebar-nav-group" key={section.section || section.path || sectionIndex}>
+              {grouped && section.section && (
+                <div className="sidebar-section-heading">
+                  {section.section}
                 </div>
+              )}
 
-                <div>
-                <h5 className="mb-0">Guidance Office</h5>
-                <small>BatStateU</small>
-                </div>
+              {items.map((item) => {
+                const Icon = iconMap[item.icon];
+
+                return (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `sidebar-link${isActive ? " active" : ""}`
+                    }
+                    title={item.label}
+                  >
+                    {Icon && <Icon className="sidebar-link-icon" />}
+                    <span className="sidebar-link-label">
+                      {item.label}
+                    </span>
+                  </NavLink>
+                );
+              })}
             </div>
-
-            <button
-                type="button"
-                className="sidebar-close d-lg-none"
-                onClick={onClose}
-                aria-label="Close navigation"
-            >
-                <FaTimes />
-            </button>
-        </div>
-
-        <nav className="sidebar-nav">
-          {navItems.map((item) => {
-            const Icon = iconMap[item.icon];
-
-            return (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                onClick={onClose}
-                className={({ isActive }) =>
-                  `sidebar-link ${isActive ? "active" : ""}`
-                }
-              >
-                {Icon && <Icon className="sidebar-icon" />}
-
-                <span>{item.label}</span>
-              </NavLink>
-            );
-          })}
-        </nav>
-
-        <div className="sidebar-footer">
-          <small>Guidance & Counseling System</small>
-          <small>© 2026 BatStateU</small>
-        </div>
-      </aside>
-    </>
+          );
+        })}
+      </nav>
+    </aside>
   );
 }
-
-export default Sidebar;

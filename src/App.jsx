@@ -54,24 +54,15 @@ import AdminAnnouncements from './pages/admin/Announcements';
 import AdminNotifications from './pages/admin/Notifications';
 import UserManagement from './pages/admin/UserManagement';
 import AuditLog from './pages/admin/AuditLog';
+import ExitInterview from './pages/admin/ExitInterview';
 import SystemSettings from './pages/admin/SystemSettings';
 
 // Stage 16 - Phase 4
 import AIInsights from './pages/admin/AIInsights';
 
-// Placeholder for pages not implemented yet
-function Placeholder({ title }) {
-  return (
-    <div className="container-fluid py-4">
-      <div className="mb-4">
-        <h2>{title}</h2>
-        <p className="text-muted">
-          This page is not implemented yet.
-        </p>
-      </div>
-    </div>
-  );
-}
+import Analytics from './pages/admin/Analytics';
+import PrescriptiveAnalytics from './pages/admin/PrescriptiveAnalytics';
+
 
 function App() {
   return (
@@ -107,6 +98,7 @@ function App() {
             <Route path="ai-assistant" element={<AIAssistant />} />
           </Route>
         </Route>
+
 
         {/* Facilitator */}
         <Route element={<RoleRoute allowedRoles={['facilitator']} />}>
@@ -155,9 +147,10 @@ function App() {
             <Route path="referrals" element={<ReferralManagement />} />
             <Route path="follow-ups" element={<FollowUpManagement />} />
             <Route path="career-services" element={<CareerServices />} />
+            <Route path="exit-interview" element={<ExitInterview />} />
             <Route
               path="students"
-              element={<Placeholder title="Student Records" />}
+              element={<FacilitatorStudentRecords />}
             />
 
             {/* Programs & Communication */}
@@ -166,13 +159,10 @@ function App() {
             <Route path="notifications" element={<AdminNotifications />} />
 
             {/* Analytics & Intelligence */}
-            <Route
-              path="analytics"
-              element={<Placeholder title="Reports & Analytics" />}
-            />
+            <Route path="analytics" element={<Analytics />} />
             <Route
               path="prescriptive"
-              element={<Placeholder title="Prescriptive Insights" />}
+              element={<PrescriptiveAnalytics />}
             />
             <Route path="ai-insights" element={<AIInsights />} />
 
@@ -183,6 +173,7 @@ function App() {
           </Route>
         </Route>
       </Route>
+
 
       {/* Default Routes */}
       <Route
